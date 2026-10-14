@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스트레스 DSR 계산기 2026 — 주담대 한도 바로 계산 | 내집플랜</title>
+<meta name="description" content="2026년 10월 기준 스트레스 DSR 계산기. 연소득·주택가격·금리 유형(변동·혼합·주기·고정)을 넣으면 규제지역·수도권·지방 LTV, DSR 40%, 주담대 금액 상한까지 반영한 최대 대출 가능액을 바로 계산합니다.">
+<link rel="canonical" href="https://naejipplan.com/stress-dsr/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="스트레스 DSR 계산기 2026 — 내 연봉으로 얼마까지 대출될까?">
+<meta property="og:description" content="스트레스 금리·LTV·주담대 금액 상한을 반영한 최대 대출 가능액을 1분 만에 계산">
+<meta property="og:url" content="https://naejipplan.com/stress-dsr/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#1b5e20">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!--
+  AdSense: 사이트 승인 후 아래 주석을 풀고 ca-pub-XXXXXXXXXXXXXXXX를 실제 게시자 ID로 교체.
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "스트레스 DSR 계산기 — 내집플랜",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "ko",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "스트레스 DSR이란 무엇인가요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "DSR을 계산할 때 실제 대출 금리에 미래 금리 상승 가능성을 반영한 스트레스 금리를 더해 연간 원리금을 산정하는 제도입니다. 실제로 내는 이자는 그대로지만, 한도 계산상 원리금이 커져 대출 한도가 줄어듭니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "스트레스 금리는 얼마나 붙나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "2026년 10월 기준 은행권 주담대는 수도권·규제지역 3%p, 지방 0.75%p(2026년 12월 31일까지 완화)입니다. 여기에 금리 유형별 반영비율을 곱합니다. 변동형은 100%, 고정형은 0%, 혼합형·주기형은 고정기간이 만기에서 차지하는 비중에 따라 달라집니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "고정금리로 받으면 스트레스 DSR을 피할 수 있나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "만기 내내 금리가 고정되는 순수 고정형은 반영비율이 0%라 스트레스 금리가 붙지 않습니다. 혼합형·주기형도 고정기간 비중이 70% 이상이면 0%입니다. 다만 고정형은 보통 금리가 더 높아 실제 이자 부담과 함께 비교해야 합니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "스트레스 DSR 때문에 한도가 항상 줄어드나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "아닙니다. 최종 한도는 LTV, DSR, 주담대 금액 상한 중 가장 작은 값입니다. 소득이 충분해 LTV나 금액 상한이 먼저 걸리면 스트레스 금리가 붙어도 최종 한도는 그대로일 수 있습니다." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #f6f8f6;
+  --surface: #ffffff;
+  --surface-2: #eef3ee;
+  --text: #17201a;
+  --muted: #5b6a5f;
+  --border: #d9e2da;
+  --brand: #1b5e20;
+  --brand-strong: #124216;
+  --brand-soft: #e3f0e4;
+  --on-brand: #ffffff;
+  --accent: #b45309;
+  --accent-soft: #fdf1e2;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  --ok: #1b5e20;
+  --bar-track: #e6ece7;
+  --bar: #9fb8a2;
+  --shadow: 0 1px 2px rgba(16, 40, 20, .06), 0 4px 16px rgba(16, 40, 20, .05);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1411;
+    --surface: #171e19;
+    --surface-2: #1e2720;
+    --text: #e6ede7;
+    --muted: #9db0a1;
+    --border: #2c382f;
+    --brand: #81c784;
+    --brand-strong: #a5d6a7;
+    --brand-soft: #1f3322;
+    --on-brand: #0d1f0f;
+    --accent: #f0b46a;
+    --accent-soft: #3a2a15;
+    --danger: #f28b82;
+    --danger-soft: #3b1d1a;
+    --ok: #81c784;
+    --bar-track: #232d26;
+    --bar: #4f6853;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1411; --surface: #171e19; --surface-2: #1e2720; --text: #e6ede7; --muted: #9db0a1;
+  --border: #2c382f; --brand: #81c784; --brand-strong: #a5d6a7; --brand-soft: #1f3322; --on-brand: #0d1f0f;
+  --accent: #f0b46a; --accent-soft: #3a2a15; --danger: #f28b82; --danger-soft: #3b1d1a; --ok: #81c784;
+  --bar-track: #232d26; --bar: #4f6853; --shadow: none; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+a { color: var(--brand); }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+header.site {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.logo { font-weight: 800; color: var(--brand); text-decoration: none; letter-spacing: -.02em; }
+.logo small { color: var(--muted); font-weight: 500; margin-left: 6px; }
+.header-cta { font-size: 14px; font-weight: 600; text-decoration: none; }
+
+.hero { padding: 28px 0 12px; }
+.hero h1 { font-size: clamp(24px, 5vw, 32px); line-height: 1.3; margin: 0 0 8px; letter-spacing: -.02em; }
+.hero p { margin: 0; color: var(--muted); }
+.asof { display: inline-block; font-size: 13px; font-weight: 600; color: var(--brand); background: var(--brand-soft); padding: 2px 10px; border-radius: 999px; margin-bottom: 10px; }
+.stale { display: none; margin-top: 12px; padding: 10px 14px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); font-size: 14px; }
+
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; margin-top: 16px; }
+@media (max-width: 780px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); }
+.card h2 { font-size: 17px; margin: 0 0 14px; }
+.result-col { position: sticky; top: 12px; display: grid; gap: 16px; }
+@media (max-width: 780px) { .result-col { position: static; } }
+
+fieldset { border: 0; margin: 0 0 16px; padding: 0; min-width: 0; }
+legend, .label { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--surface-2); border-radius: 10px; padding: 3px; gap: 3px; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 14px; padding: 8px 4px; border-radius: 8px; cursor: pointer; color: var(--muted); font-weight: 600; line-height: 1.3; }
+.seg input:checked + label { background: var(--surface); color: var(--brand); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.seg input:focus-visible + label { outline: 2px solid var(--brand); outline-offset: 1px; }
+.hint { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.fields .full { grid-column: 1 / -1; }
+.field { min-width: 0; }
+.input { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); padding: 0 12px; transition: border-color .15s; }
+.input:focus-within { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-soft); }
+.input input, .input select { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font: inherit; font-size: 17px; font-weight: 600; padding: 10px 0; text-align: right; font-variant-numeric: tabular-nums; }
+.input select { text-align: left; font-size: 16px; appearance: none; cursor: pointer; }
+.input .unit { color: var(--muted); font-size: 14px; margin-left: 6px; white-space: nowrap; }
+.input .chev { color: var(--muted); pointer-events: none; }
+.korean { font-size: 12px; color: var(--muted); text-align: right; min-height: 18px; margin-top: 2px; }
+
+details.other { border-top: 1px dashed var(--border); padding-top: 12px; }
+details.other summary { cursor: pointer; font-weight: 600; font-size: 15px; color: var(--brand); list-style: none; }
+details.other summary::-webkit-details-marker { display: none; }
+details.other summary::before { content: "+ "; }
+details.other[open] summary::before { content: "− "; }
+.subhead { font-size: 13px; font-weight: 700; margin: 14px 0 8px; }
+
+.result-hero .k { font-size: 14px; color: var(--muted); font-weight: 600; }
+.big { font-size: clamp(30px, 7vw, 40px); font-weight: 800; letter-spacing: -.03em; line-height: 1.2; color: var(--brand); font-variant-numeric: tabular-nums; margin: 4px 0 6px; }
+.badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); }
+.verdict { margin-top: 12px; padding: 10px 12px; border-radius: 10px; font-size: 14px; font-weight: 600; }
+.verdict.ok { background: var(--brand-soft); color: var(--ok); }
+.verdict.over { background: var(--danger-soft); color: var(--danger); }
+.empty { color: var(--muted); font-size: 15px; }
+
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 16px; }
+.stat { background: var(--surface-2); border-radius: 10px; padding: 10px; }
+.stat .k { font-size: 12px; color: var(--muted); font-weight: 600; }
+.stat .v { font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.stat .s { font-size: 12px; color: var(--muted); }
+.stat.warn .v { color: var(--danger); }
+
+.impact { margin-top: 16px; padding: 14px; border-radius: 12px; background: var(--accent-soft); color: var(--text); font-size: 15px; }
+.impact strong { color: var(--accent); }
+
+.bars { display: grid; gap: 10px; margin-top: 4px; }
+.bar-row .top { display: flex; justify-content: space-between; font-size: 14px; gap: 8px; }
+.bar-row .top span:last-child { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar-track { height: 10px; background: var(--bar-track); border-radius: 6px; overflow: hidden; margin-top: 4px; }
+.bar-fill { height: 100%; background: var(--bar); border-radius: 6px; transition: width .25s; }
+.bar-row.min .bar-fill { background: var(--brand); }
+.bar-row.min .top span:first-child::after { content: " · 최종 한도"; color: var(--brand); font-weight: 700; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 8px 6px; border-bottom: 1px solid var(--border); }
+td.amt { white-space: nowrap; }
+td .sub { display: block; white-space: nowrap; font-size: 12px; color: var(--muted); font-weight: 500; }
+th:first-child, td:first-child { text-align: left; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; }
+tr.current td { font-weight: 700; color: var(--brand); }
+.table-scroll { overflow-x: auto; }
+
+ul.notes { margin: 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
+
+.ad-slot { margin: 16px 0; min-height: 100px; border: 1px dashed var(--border); border-radius: 12px; display: grid; place-items: center; color: var(--muted); font-size: 13px; }
+
+.cta { display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--brand); color: var(--on-brand); border-radius: 16px; padding: 20px; margin: 24px 0; }
+.cta h2 { margin: 0 0 4px; font-size: 18px; }
+.cta p { margin: 0; opacity: .9; font-size: 14px; }
+.cta a { background: var(--on-brand); color: var(--brand); text-decoration: none; font-weight: 800; padding: 12px 18px; border-radius: 12px; white-space: nowrap; }
+
+article.content { margin-top: 8px; }
+article.content h2 { font-size: 22px; margin: 36px 0 10px; letter-spacing: -.02em; }
+article.content h3 { font-size: 17px; margin: 22px 0 8px; }
+article.content p, article.content li { color: var(--text); }
+article.content .card { padding: 4px 16px; }
+details.faq { border-bottom: 1px solid var(--border); padding: 12px 0; }
+details.faq summary { cursor: pointer; font-weight: 700; }
+details.faq p { margin: 8px 0 0; color: var(--muted); }
+
+footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="/">내집플랜<small>대출계산기</small></a>
+    <a class="header-cta app-link" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">앱 설치</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="asof" id="asof">2026년 10월 규제 기준</span>
+    <h1>스트레스 DSR 계산기</h1>
+    <p>연소득과 주택 가격만 넣으면 스트레스 금리·LTV·주담대 금액 상한을 모두 반영한 <b>최대 대출 가능액</b>을 바로 계산합니다. 입력값은 서버로 전송되지 않습니다.</p>
+    <div class="stale" id="stale" role="status">규제 정보 기준일로부터 90일이 지났습니다. 최신 규제가 바뀌었을 수 있으니 은행에 꼭 확인하세요.</div>
+  </section>
+
+  <div class="grid">
+    <form class="card" id="form" autocomplete="off" onsubmit="return false">
+      <h2>조건 입력</h2>
+
+      <fieldset>
+        <legend>주택 소재지</legend>
+        <div class="seg">
+          <input type="radio" name="region" id="r-regulated" value="regulated"><label for="r-regulated">규제지역</label>
+          <input type="radio" name="region" id="r-capitalArea" value="capitalArea" checked><label for="r-capitalArea">수도권<br>비규제</label>
+          <input type="radio" name="region" id="r-nonCapital" value="nonCapital"><label for="r-nonCapital">지방</label>
+        </div>
+        <div class="hint" id="region-hint"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>주택 보유</legend>
+        <div class="seg">
+          <input type="radio" name="buyer" id="b-homeless" value="homeless" checked><label for="b-homeless">무주택</label>
+          <input type="radio" name="buyer" id="b-firstTime" value="firstTime"><label for="b-firstTime">생애최초</label>
+          <input type="radio" name="buyer" id="b-oneHome" value="oneHome"><label for="b-oneHome">1주택<br>(처분조건)</label>
+        </div>
+      </fieldset>
+
+      <div class="fields">
+        <div class="field">
+          <label class="label" for="income">연소득 (부부합산)</label>
+          <div class="input"><input id="income" name="income" inputmode="numeric" data-money value="7,000"><span class="unit">만원</span></div>
+          <div class="korean" data-for="income"></div>
+        </div>
+        <div class="field">
+          <label class="label" for="price">주택 가격</label>
+          <div class="input"><input id="price" name="price" inputmode="numeric" data-money value="70,000"><span class="unit">만원</span></div>
+          <div class="korean" data-for="price"></div>
+        </div>
+        <div class="field full">
+          <label class="label" for="loan">희망 대출액</label>
+          <div class="input"><input id="loan" name="loan" inputmode="numeric" data-money value="40,000"><span class="unit">만원</span></div>
+          <div class="korean" data-for="loan"></div>
+        </div>
+        <div class="field">
+          <label class="label" for="rate">연 이자율</label>
+          <div class="input"><input id="rate" name="rate" inputmode="decimal" data-decimal value="4.0"><span class="unit">%</span></div>
+        </div>
+        <div class="field">
+          <label class="label" for="years">대출 기간</label>
+          <div class="input"><input id="years" name="years" inputmode="numeric" data-int value="30"><span class="unit">년</span></div>
+          <div class="korean" id="years-hint"></div>
+        </div>
+        <div class="field full">
+          <label class="label" for="method">상환 방식</label>
+          <div class="input">
+            <select id="method" name="method">
+              <option value="amortization">원리금 균등</option>
+              <option value="equalPrincipal">원금 균등</option>
+              <option value="bullet">만기 일시</option>
+            </select><span class="chev" aria-hidden="true">▾</span>
+          </div>
+        </div>
+      </div>
+
+      <fieldset>
+        <legend>금리 유형</legend>
+        <div class="seg">
+          <input type="radio" name="rateType" id="t-variable" value="variable" checked><label for="t-variable">변동형</label>
+          <input type="radio" name="rateType" id="t-mixed" value="mixed"><label for="t-mixed">혼합형</label>
+          <input type="radio" name="rateType" id="t-periodic" value="periodic"><label for="t-periodic">주기형</label>
+          <input type="radio" name="rateType" id="t-fixed" value="fixed"><label for="t-fixed">고정형</label>
+        </div>
+        <div class="fields" id="fixed-wrap" style="margin:12px 0 0" hidden>
+          <div class="field full">
+            <label class="label" for="fixedYears" id="fixed-label">고정 기간</label>
+            <div class="input"><input id="fixedYears" name="fixedYears" inputmode="numeric" data-int value="5"><span class="unit">년</span></div>
+          </div>
+        </div>
+        <div class="hint" id="ratio-hint"></div>
+      </fieldset>
+
+      <details class="other" id="other">
+        <summary>보유 중인 다른 대출 (신용대출·할부 등)</summary>
+        <div class="subhead">신용대출</div>
+        <div class="fields">
+          <div class="field full">
+            <label class="label" for="cBal">잔액</label>
+            <div class="input"><input id="cBal" name="cBal" inputmode="numeric" data-money value=""><span class="unit">만원</span></div>
+          </div>
+          <div class="field">
+            <label class="label" for="cRate">금리</label>
+            <div class="input"><input id="cRate" name="cRate" inputmode="decimal" data-decimal value="5.5"><span class="unit">%</span></div>
+          </div>
+          <div class="field">
+            <label class="label" for="cYears">잔여 기간</label>
+            <div class="input"><input id="cYears" name="cYears" inputmode="decimal" data-decimal value="5"><span class="unit">년</span></div>
+          </div>
+        </div>
+        <div class="subhead">분할상환 대출 (자동차 할부·학자금 등)</div>
+        <div class="fields">
+          <div class="field full">
+            <label class="label" for="iBal">잔액</label>
+            <div class="input"><input id="iBal" name="iBal" inputmode="numeric" data-money value=""><span class="unit">만원</span></div>
+          </div>
+          <div class="field">
+            <label class="label" for="iRate">금리</label>
+            <div class="input"><input id="iRate" name="iRate" inputmode="decimal" data-decimal value="5"><span class="unit">%</span></div>
+          </div>
+          <div class="field">
+            <label class="label" for="iYears">잔여 기간</label>
+            <div class="input"><input id="iYears" name="iYears" inputmode="decimal" data-decimal value="3"><span class="unit">년</span></div>
+          </div>
+        </div>
+        <div class="hint">신용대출은 원금을 잔여 기간(최대 5년)으로 나눠, 분할상환 대출은 다음 12개월 원리금으로 DSR에 넣습니다.</div>
+      </details>
+    </form>
+
+    <div class="result-col" aria-live="polite">
+      <section class="card result-hero" id="result">
+        <div class="k">최대 대출 가능액</div>
+        <div class="big" id="maxLoan">—</div>
+        <span class="badge" id="factor"></span>
+        <div class="verdict" id="verdict" hidden></div>
+        <div class="stats">
+          <div class="stat" id="stat-dsr"><div class="k">스트레스 DSR</div><div class="v" id="dsr">—</div><div class="s" id="dsr-limit"></div></div>
+          <div class="stat"><div class="k">실제 금리 DSR</div><div class="v" id="dsrNom">—</div><div class="s">참고</div></div>
+          <div class="stat" id="stat-ltv"><div class="k">LTV</div><div class="v" id="ltv">—</div><div class="s" id="ltv-limit"></div></div>
+        </div>
+        <div class="impact" id="impact"></div>
+      </section>
+
+      <section class="card">
+        <h2>한도를 정하는 세 기준</h2>
+        <div class="bars" id="bars"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- AdSense 슬롯 1: 결과 바로 아래 (승인 후 <ins class="adsbygoogle"> 코드로 교체) -->
+  <div class="ad-slot" aria-hidden="true">광고 영역</div>
+
+  <div class="grid">
+    <section class="card">
+      <h2>금리 유형별 최대 한도</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>금리 유형</th><th>DSR 기준 한도</th><th>최종 한도</th></tr></thead>
+          <tbody id="byType"></tbody>
+        </table>
+      </div>
+      <div class="hint" id="byType-hint"></div>
+    </section>
+    <section class="card">
+      <h2>적용된 규제</h2>
+      <ul class="notes" id="notes"></ul>
+    </section>
+  </div>
+
+  <section class="cta">
+    <div>
+      <h2>매물 비교·정책대출 진단까지 앱에서</h2>
+      <p>취득세 포함 총 필요 자금, 중도상환·대환 손익, 디딤돌·신생아특례 자가진단. 로그인 없이 오프라인으로.</p>
+    </div>
+    <a class="app-link" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">Google Play에서 받기</a>
+  </section>
+
+  <article class="content">
+    <h2>스트레스 DSR이란?</h2>
+    <p>DSR(총부채원리금상환비율)은 1년 동안 갚아야 할 모든 대출의 원리금이 연소득에서 차지하는 비율입니다. 은행권 주택담보대출은 DSR 40% 이내에서만 받을 수 있습니다.</p>
+    <p><b>스트레스 DSR</b>은 이 DSR을 계산할 때 실제 금리에 <b>스트레스 금리</b>를 더해 원리금을 크게 잡는 제도입니다. 실제로 내는 이자는 바뀌지 않지만, 한도 계산상 원리금이 커지니 같은 소득으로 빌릴 수 있는 금액이 줄어듭니다. 변동금리 대출을 받은 뒤 금리가 올라도 감당할 수 있는지를 미리 따져 보자는 취지입니다.</p>
+
+    <h3>지역별 스트레스 금리 (2026년 10월 기준, 은행권 주담대)</h3>
+    <div class="card table-scroll">
+      <table>
+        <thead><tr><th>지역</th><th>기본 스트레스 금리</th><th>혼합·주기형 반영비율</th></tr></thead>
+        <tbody>
+          <tr><td>수도권·규제지역</td><td>3.0%p</td><td>3단계</td></tr>
+          <tr><td>지방</td><td>0.75%p</td><td>2단계 (2026.12.31까지)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>금리 유형별 반영비율</h3>
+    <p>기본 스트레스 금리에 아래 비율을 곱한 값이 실제로 더해집니다. 혼합형·주기형은 고정기간(금리 변동 주기)이 대출 만기에서 차지하는 비중으로 정하며, 고정기간이 5년 미만이면 변동형과 같이 100%입니다.</p>
+    <div class="card table-scroll">
+      <table>
+        <thead><tr><th>고정기간 비중</th><th>혼합형 3단계 / 2단계</th><th>주기형 3단계 / 2단계</th></tr></thead>
+        <tbody>
+          <tr><td>변동형</td><td colspan="2" style="text-align:center">100%</td></tr>
+          <tr><td>30% 미만</td><td>80% / 60%</td><td>40% / 30%</td></tr>
+          <tr><td>30~50%</td><td>60% / 40%</td><td>30% / 20%</td></tr>
+          <tr><td>50~70%</td><td>40% / 20%</td><td>20% / 10%</td></tr>
+          <tr><td>70% 이상 · 고정형</td><td colspan="2" style="text-align:center">0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>예: 수도권에서 30년 만기, 5년 고정 혼합형이면 비중 16.7% → 반영비율 80% → 스트레스 금리 3%p × 80% = <b>2.4%p</b>. 실제 금리가 4%라면 DSR은 6.4%로 계산합니다.</p>
+
+    <h3>최종 한도는 세 기준 중 가장 작은 값</h3>
+    <ul>
+      <li><b>LTV</b>: 주택 가격 × LTV 비율. 규제지역 무주택 40%(서민·실수요자 60%, 생애최초 70%), 수도권 비규제 70%, 지방 70%(생애최초 80%).</li>
+      <li><b>DSR</b>: 스트레스 금리를 더한 연간 원리금이 연소득의 40%를 넘지 않는 최대 금액.</li>
+      <li><b>금액 상한</b>: 수도권·규제지역 주택구입 주담대는 시가 15억 이하 6억, 25억 이하 4억, 25억 초과 2억.</li>
+    </ul>
+
+    <div class="ad-slot" aria-hidden="true">광고 영역</div>
+
+    <h2>자주 묻는 질문</h2>
+    <details class="faq">
+      <summary>고정금리로 받으면 스트레스 DSR을 피할 수 있나요?</summary>
+      <p>만기 내내 금리가 고정되는 순수 고정형은 반영비율이 0%라 스트레스 금리가 붙지 않습니다. 혼합형·주기형도 고정기간 비중이 70% 이상이면 0%입니다. 다만 고정형은 보통 금리가 더 높으니, 위 표의 한도 차이와 실제 이자 부담을 함께 비교하세요.</p>
+    </details>
+    <details class="faq">
+      <summary>스트레스 DSR 때문에 한도가 항상 줄어드나요?</summary>
+      <p>아닙니다. 소득이 충분해 LTV나 금액 상한이 먼저 걸리면 스트레스 금리가 붙어도 최종 한도는 그대로입니다. 계산기 결과의 "한도를 정하는 세 기준"에서 어느 기준이 한도를 정했는지 확인할 수 있습니다.</p>
+    </details>
+    <details class="faq">
+      <summary>대출 기간을 40년으로 하면 한도가 늘어나지 않나요?</summary>
+      <p>수도권·규제지역 주담대는 만기가 최장 30년으로 제한되어, 40년을 넣어도 30년으로 계산합니다. 지방은 기간이 길수록 연간 원리금이 줄어 DSR 한도가 늘어납니다.</p>
+    </details>
+    <details class="faq">
+      <summary>신용대출이 있으면 얼마나 줄어드나요?</summary>
+      <p>DSR 계산에서 신용대출은 원금을 잔여 기간(최대 5년)으로 나눈 금액과 이자를 1년치 상환액으로 봅니다. 신용대출 5천만원이면 연 1천만원 이상이 DSR에 잡혀 주담대 한도가 크게 줄 수 있습니다. "보유 중인 다른 대출"에 넣어 확인해 보세요.</p>
+    </details>
+
+    <footer>
+      <p>이 계산기는 은행권 주택담보대출 일반 기준을 단순화한 참고용입니다. 실제 한도는 은행 심사, 소득 증빙, 주택 수, 정책 변경에 따라 달라지니 대출 실행 전 반드시 금융기관에 확인하세요. 규제 기준: <span id="asof-foot"></span>.</p>
+      <p>© 내집플랜 · <a href="https://wblee30.github.io/naejipplan-policy/">개인정보처리방침</a> · 문의 wblee30@gmail.com</p>
+    </footer>
+  </article>
+</main>
+
+<script type="module">
+import { evaluate, regulationsAsOf, regulationsVerifiedAt, Region, RateType, stressReflectRatio } from '../js/dsr-core.js';
+
+const $ = (id) => document.getElementById(id);
+const form = $('form');
+const comma = new Intl.NumberFormat('ko-KR');
+
+// Play 설치 링크에 유입 경로 표시 (Play Console 획득 보고서에서 웹 유입 확인용)
+const referrer = encodeURIComponent('utm_source=web&utm_medium=calculator&utm_campaign=stress_dsr');
+document.querySelectorAll('.app-link').forEach((a) => { a.href += `&referrer=${referrer}`; });
+
+$('asof-foot').textContent = regulationsAsOf;
+const staleDays = (Date.now() - new Date(regulationsVerifiedAt).getTime()) / 86400000;
+if (staleDays > 90) $('stale').style.display = 'block';
+
+function wonKorean(amount) {
+  const v = Math.round(amount);
+  if (v === 0) return '0원';
+  const sign = v < 0 ? '-' : '';
+  const abs = Math.abs(v);
+  const eok = Math.floor(abs / 1e8);
+  const man = Math.floor((abs % 1e8) / 1e4);
+  const parts = [];
+  if (eok > 0) parts.push(`${comma.format(eok)}억`);
+  if (man > 0) parts.push(`${comma.format(man)}만`);
+  if (!parts.length) parts.push(comma.format(abs));
+  return `${sign}${parts.join(' ')}원`;
+}
+const manwon = (won) => wonKorean(Math.round(won / 1e4) * 1e4);
+const pct = (v, d = 1) => (Number.isFinite(v) ? `${(Math.round(v * 10 ** d) / 10 ** d).toFixed(d)}%` : '—');
+const num = (s) => { const n = parseFloat(String(s).replace(/,/g, '')); return Number.isFinite(n) ? n : 0; };
+const radio = (name) => form.querySelector(`input[name="${name}"]:checked`).value;
+
+// 입력 필터: 금액은 콤마, 소수는 소수점 1개
+form.querySelectorAll('[data-money]').forEach((el) => el.addEventListener('input', () => {
+  const digits = el.value.replace(/[^0-9]/g, '').slice(0, 8);
+  el.value = digits ? comma.format(Number(digits)) : '';
+}));
+form.querySelectorAll('[data-int]').forEach((el) => el.addEventListener('input', () => {
+  el.value = el.value.replace(/[^0-9]/g, '').slice(0, 2);
+}));
+form.querySelectorAll('[data-decimal]').forEach((el) => el.addEventListener('input', () => {
+  const m = el.value.replace(/[^0-9.]/g, '').match(/^\d{0,2}(\.\d{0,2})?/);
+  el.value = m ? m[0] : '';
+}));
+
+function readInputs() {
+  const otherLoans = [];
+  const cBal = num($('cBal').value) * 1e4;
+  if (cBal > 0) otherLoans.push({ balance: cBal, annualRate: num($('cRate').value), remainingMonths: Math.round(num($('cYears').value) * 12), isCredit: true });
+  const iBal = num($('iBal').value) * 1e4;
+  if (iBal > 0) otherLoans.push({ balance: iBal, annualRate: num($('iRate').value), remainingMonths: Math.round(num($('iYears').value) * 12) });
+  return {
+    region: radio('region'),
+    buyer: radio('buyer'),
+    annualIncome: num($('income').value) * 1e4,
+    propertyPrice: num($('price').value) * 1e4,
+    loanAmount: num($('loan').value) * 1e4,
+    annualRate: num($('rate').value),
+    years: num($('years').value),
+    method: $('method').value,
+    rateType: radio('rateType'),
+    fixedYears: num($('fixedYears').value),
+    otherLoans,
+  };
+}
+
+function render() {
+  const input = readInputs();
+  ['income', 'price', 'loan'].forEach((id) => {
+    const v = num($(id).value) * 1e4;
+    form.querySelector(`.korean[data-for="${id}"]`).textContent = v > 0 ? wonKorean(v) : '';
+  });
+  $('region-hint').textContent = Region[input.region].description;
+  const needsFixed = RateType[input.rateType].needsFixedYears;
+  $('fixed-wrap').hidden = !needsFixed;
+  $('fixed-label').textContent = input.rateType === 'periodic' ? '금리 변동 주기' : '고정 기간';
+
+  if (input.annualIncome <= 0 || input.years <= 0) {
+    $('maxLoan').textContent = '—';
+    $('factor').textContent = '';
+    $('verdict').hidden = true;
+    $('impact').innerHTML = '<span class="empty">연소득과 대출 기간을 입력하세요.</span>';
+    ['dsr', 'dsrNom', 'ltv'].forEach((id) => { $(id).textContent = '—'; });
+    $('bars').innerHTML = '';
+    $('byType').innerHTML = '';
+    $('notes').innerHTML = '';
+    syncUrl();
+    return;
+  }
+
+  const e = evaluate(input);
+  const { result: r, noStress: n, regulation: reg } = e;
+
+  $('years-hint').textContent = e.months < e.enteredMonths ? `만기 최장 ${reg.maxYears}년이라 ${reg.maxYears}년으로 계산` : '';
+  const ratio = stressReflectRatio(input.rateType, { fixedYears: input.fixedYears, loanYears: Math.floor(e.months / 12), stage2: reg.stage2Ratios });
+  $('ratio-hint').textContent = `스트레스 금리 ${reg.baseStressRate}%p × 반영비율 ${Math.round(ratio * 100)}% = ${e.stress.toFixed(2).replace(/0$/, '')}%p 가산 → DSR 계산 금리 ${(input.annualRate + e.stress).toFixed(2).replace(/0$/, '')}%`;
+
+  $('maxLoan').textContent = manwon(r.maxLoan);
+  $('factor').textContent = `${r.limitingFactor} 기준으로 결정`;
+
+  const verdict = $('verdict');
+  if (input.loanAmount > 0) {
+    verdict.hidden = false;
+    const ok = input.loanAmount <= r.maxLoan + 1;
+    verdict.className = `verdict ${ok ? 'ok' : 'over'}`;
+    verdict.textContent = ok
+      ? `희망 대출액 ${manwon(input.loanAmount)}은 한도 안입니다.`
+      : `희망 대출액이 한도보다 ${manwon(input.loanAmount - r.maxLoan)} 많습니다.`;
+  } else {
+    verdict.hidden = true;
+  }
+
+  $('dsr').textContent = pct(r.dsrPercent);
+  $('dsr-limit').textContent = `한도 ${reg.dsrPercent}%`;
+  $('stat-dsr').classList.toggle('warn', r.dsrPercent > reg.dsrPercent);
+  $('dsrNom').textContent = pct(r.dsrPercentNominal);
+  $('ltv').textContent = pct(r.ltvPercent);
+  $('ltv-limit').textContent = `한도 ${reg.ltvPercent}%`;
+  $('stat-ltv').classList.toggle('warn', r.ltvPercent > reg.ltvPercent + 1e-9);
+
+  const dsrCut = n.maxLoanByDsr - r.maxLoanByDsr;
+  const finalCut = n.maxLoan - r.maxLoan;
+  let impact;
+  if (e.stress <= 0) {
+    impact = `${RateType[input.rateType].label}은 스트레스 금리가 붙지 않습니다. DSR 기준 한도는 <strong>${manwon(r.maxLoanByDsr)}</strong>입니다.`;
+  } else if (finalCut > 1e4) {
+    impact = `스트레스 금리 ${e.stress.toFixed(2).replace(/0$/, '')}%p 때문에 최대 한도가 <strong>${manwon(finalCut)}</strong> 줄었습니다. (미적용 시 ${manwon(n.maxLoan)})`;
+  } else {
+    impact = `스트레스 금리로 DSR 기준 한도는 ${manwon(dsrCut)} 줄었지만, <strong>${n.limitingFactor} 기준</strong>이 먼저 걸려 최종 한도는 그대로입니다.`;
+  }
+  $('impact').innerHTML = impact;
+
+  const rows = [
+    { k: `LTV ${reg.ltvPercent}%`, v: r.maxLoanByLtv, f: 'LTV' },
+    { k: `DSR ${reg.dsrPercent}% (스트레스 반영)`, v: r.maxLoanByDsr, f: 'DSR' },
+  ];
+  if (reg.loanCap != null) rows.push({ k: '주담대 금액 상한', v: reg.loanCap, f: '금액 상한' });
+  const maxV = Math.max(...rows.map((x) => x.v), 1);
+  $('bars').innerHTML = rows.map((x) => `
+    <div class="bar-row${x.f === r.limitingFactor ? ' min' : ''}">
+      <div class="top"><span>${x.k}</span><span>${manwon(x.v)}</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.max(2, (x.v / maxV) * 100)}%"></div></div>
+    </div>`).join('');
+
+  $('byType').innerHTML = e.byRateType.map((t) => `
+    <tr class="${t.rateType === input.rateType ? 'current' : ''}">
+      <td>${RateType[t.rateType].label}<span class="sub">+${t.stressRatePercent.toFixed(2).replace(/0$/, '')}%p</span></td>
+      <td class="amt">${manwon(t.maxLoanByDsr)}</td>
+      <td class="amt">${manwon(t.maxLoan)}</td>
+    </tr>`).join('');
+  $('byType-hint').textContent = `혼합형·주기형은 고정기간 ${input.fixedYears || 0}년, 만기 ${Math.floor(e.months / 12)}년 기준입니다.`;
+
+  $('notes').innerHTML = [...reg.notes,
+    ...(input.otherLoans.length ? [`기타 대출 연간 원리금 ${manwon(r.otherAnnualPayment)} 포함`] : []),
+  ].map((t) => `<li>${t}</li>`).join('');
+
+  syncUrl();
+}
+
+// URL 쿼리에 입력값을 담아 블로그 글에서 예시 조건으로 바로 링크할 수 있게 한다.
+// 예: ?region=regulated&income=9000&price=120000&rateType=mixed&fixedYears=5
+const keys = ['region', 'buyer', 'income', 'price', 'loan', 'rate', 'years', 'method', 'rateType', 'fixedYears'];
+function syncUrl() {
+  const p = new URLSearchParams();
+  keys.forEach((k) => {
+    const el = form.elements[k];
+    const v = el.value.replace(/,/g, '');
+    if (v) p.set(k, v);
+  });
+  history.replaceState(null, '', `${location.pathname}?${p}`);
+}
+function loadUrl() {
+  const p = new URLSearchParams(location.search);
+  keys.forEach((k) => {
+    if (!p.has(k)) return;
+    const v = p.get(k);
+    const el = form.elements[k];
+    if (el instanceof RadioNodeList) {
+      const opt = form.querySelector(`input[name="${k}"][value="${CSS.escape(v)}"]`);
+      if (opt) opt.checked = true;
+    } else if (el.tagName === 'SELECT') {
+      if ([...el.options].some((o) => o.value === v)) el.value = v;
+    } else {
+      el.value = el.hasAttribute('data-money') ? comma.format(num(v)) : String(num(v));
+    }
+  });
+}
+
+loadUrl();
+form.addEventListener('input', render);
+form.addEventListener('change', render);
+render();
+</script>
+</body>
+</html>

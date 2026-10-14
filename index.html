@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내집플랜 — DSR·대출 계산기, 내집마련 자금 계획</title>
+<meta name="description" content="스트레스 DSR·LTV 한도, 대출 이자, 중도상환까지. 아파트 매수를 준비하는 분들을 위한 무료 대출 계산기 모음.">
+<link rel="canonical" href="https://naejipplan.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="내집플랜 — DSR·대출 계산기">
+<meta property="og:description" content="스트레스 DSR·LTV 한도부터 내집마련 자금 계획까지">
+<meta property="og:url" content="https://naejipplan.com/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#1b5e20">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root {
+  --bg: #f6f8f6; --surface: #ffffff; --text: #17201a; --muted: #5b6a5f; --border: #d9e2da;
+  --brand: #1b5e20; --brand-soft: #e3f0e4; --on-brand: #ffffff; color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1411; --surface: #171e19; --text: #e6ede7; --muted: #9db0a1; --border: #2c382f;
+    --brand: #81c784; --brand-soft: #1f3322; --on-brand: #0d1f0f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1411; --surface: #171e19; --text: #e6ede7; --muted: #9db0a1; --border: #2c382f;
+  --brand: #81c784; --brand-soft: #1f3322; --on-brand: #0d1f0f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; word-break: keep-all;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 40px 16px; }
+h1 { font-size: clamp(26px, 6vw, 34px); margin: 0 0 8px; letter-spacing: -.02em; color: var(--brand); }
+.lead { color: var(--muted); margin: 0 0 28px; }
+.tools { display: grid; gap: 12px; }
+a.tool { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 18px 20px; transition: border-color .15s; }
+a.tool:hover, a.tool:focus-visible { border-color: var(--brand); }
+a.tool h2 { margin: 0 0 4px; font-size: 18px; }
+a.tool p { margin: 0; color: var(--muted); font-size: 15px; }
+.soon { opacity: .6; border-style: dashed; padding: 18px 20px; border-radius: 16px; border: 1px dashed var(--border); }
+.soon h2 { margin: 0 0 4px; font-size: 18px; }
+.soon p { margin: 0; color: var(--muted); font-size: 15px; }
+.cta { margin-top: 28px; background: var(--brand); color: var(--on-brand); border-radius: 16px; padding: 20px; }
+.cta h2 { margin: 0 0 4px; font-size: 18px; }
+.cta p { margin: 0 0 14px; opacity: .9; font-size: 14px; }
+.cta a { display: inline-block; background: var(--on-brand); color: var(--brand); font-weight: 800; text-decoration: none; padding: 12px 18px; border-radius: 12px; }
+footer { margin-top: 40px; font-size: 13px; color: var(--muted); }
+footer a { color: var(--brand); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>내집플랜</h1>
+  <p class="lead">아파트 매수를 준비하는 분들을 위한 대출 계산기. 입력값은 서버로 전송되지 않습니다.</p>
+
+  <div class="tools">
+    <a class="tool" href="/stress-dsr/">
+      <h2>스트레스 DSR 계산기 →</h2>
+      <p>연소득·주택 가격·금리 유형으로 LTV·DSR·주담대 금액 상한을 반영한 최대 대출 가능액 계산 (2026년 10월 규제 기준)</p>
+    </a>
+    <div class="soon">
+      <h2>중도상환·대환 손익 계산기</h2>
+      <p>준비 중</p>
+    </div>
+  </div>
+
+  <section class="cta">
+    <h2>매물 비교·정책대출 진단까지 앱에서</h2>
+    <p>취득세 포함 총 필요 자금, 디딤돌·신생아특례 자가진단. 로그인 없이 오프라인으로.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator&amp;referrer=utm_source%3Dweb%26utm_medium%3Dhome%26utm_campaign%3Dlanding">Google Play에서 받기</a>
+  </section>
+
+  <footer>
+    <p>계산 결과는 참고용이며 실제 대출 조건은 금융기관 심사 기준을 따릅니다.</p>
+    <p>© 내집플랜 · <a href="https://wblee30.github.io/naejipplan-policy/">개인정보처리방침</a> · 문의 wblee30@gmail.com</p>
+  </footer>
+</main>
+</body>
+</html>

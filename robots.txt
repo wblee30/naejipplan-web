@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# 네이버 사이트 소유 확인용 파일은 내용 없는 화면이라 Google 크롤러(검색·AdSense)에는 열지 않는다.
+User-agent: Googlebot
+Disallow: /naverdafb1760ec9991155c46311c8ead9f49.html
+
+User-agent: Mediapartners-Google
+Disallow: /naverdafb1760ec9991155c46311c8ead9f49.html
+
 Sitemap: https://naejipplan.com/sitemap.xml

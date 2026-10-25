@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>대환대출 계산기 — 주담대 갈아타기 손익과 회수 기간 | 내집플랜</title>
+<meta name="description" content="주택담보대출을 더 낮은 금리로 갈아탈 때 중도상환수수료와 부대비용을 빼고도 이득인지, 몇 개월 뒤부터 이득인지 계산합니다. 기간을 늘려 갈아탈 때 총이자가 늘어나는 함정도 함께 보여 줍니다.">
+<link rel="canonical" href="https://naejipplan.com/refinance/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="대환대출 계산기 — 주담대 갈아타기, 이득일까">
+<meta property="og:description" content="수수료·부대비용을 뺀 갈아타기 순절감과 비용 회수 기간 계산">
+<meta property="og:url" content="https://naejipplan.com/refinance/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#1b5e20">
+<meta name="google-adsense-account" content="ca-pub-7787037944336770">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebApplication", "name": "대환대출 계산기 — 내집플랜", "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web", "inLanguage": "ko", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" } },
+    { "@type": "FAQPage", "mainEntity": [
+      { "@type": "Question", "name": "금리가 얼마나 낮아야 갈아타는 게 이득인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "남은 기간 동안 줄어드는 이자가 중도상환수수료와 인지세 등 부대비용보다 커야 합니다. 잔액이 크고 남은 기간이 길수록 작은 금리 차이로도 이득이 납니다. 남은 기간이 짧거나 대출 후 3년이 안 돼 수수료가 크면 금리 차이가 더 커야 합니다." } },
+      { "@type": "Question", "name": "기간을 늘려서 갈아타면 손해인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "월 납입액은 줄지만 이자를 내는 기간이 길어져 총이자가 늘어날 수 있습니다. 금리가 낮아져도 남은 10년을 30년으로 늘리면 대부분 총이자가 더 많아집니다." } }
+    ] }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <a class="logo" href="/">내집플랜</a>
+    <nav><a href="/#tools">계산기</a><a href="/about/">소개</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>대환대출 계산기</h1>
+  <p class="lead">지금 대출을 더 낮은 금리로 갈아타면 이득일까요? 줄어드는 이자에서 중도상환수수료와 부대비용을 빼 순절감액을 구하고, 비용을 몇 개월 만에 회수하는지 계산합니다. 입력값은 서버로 전송되지 않습니다.</p>
+
+  <form class="calc" id="form" autocomplete="off" onsubmit="return false">
+    <h2>지금 대출</h2>
+    <div class="fields">
+      <div class="field full">
+        <label class="label" for="balance">남은 원금</label>
+        <div class="input"><input id="balance" name="balance" inputmode="numeric" data-money value="25,000"><span class="unit">만원</span></div>
+        <div class="korean" data-for="balance"></div>
+      </div>
+      <div class="field">
+        <label class="label" for="rate">지금 금리</label>
+        <div class="input"><input id="rate" name="rate" inputmode="decimal" data-decimal value="4.5"><span class="unit">%</span></div>
+      </div>
+      <div class="field">
+        <label class="label" for="remain">남은 기간</label>
+        <div class="input"><input id="remain" name="remain" inputmode="numeric" data-int value="27"><span class="unit">년</span></div>
+      </div>
+      <div class="field">
+        <label class="label" for="elapsed">대출 후 지난 기간</label>
+        <div class="input"><input id="elapsed" name="elapsed" inputmode="numeric" data-int value="24"><span class="unit">개월</span></div>
+      </div>
+      <div class="field">
+        <label class="label" for="fee">중도상환 수수료율</label>
+        <div class="input"><input id="fee" name="fee" inputmode="decimal" data-decimal value="0.6"><span class="unit">%</span></div>
+      </div>
+    </div>
+    <fieldset>
+      <legend>상환 방식</legend>
+      <div class="seg">
+        <input type="radio" name="method" id="m-amort" value="amortization" checked><label for="m-amort">원리금 균등</label>
+        <input type="radio" name="method" id="m-princ" value="equalPrincipal"><label for="m-princ">원금 균등</label>
+      </div>
+    </fieldset>
+
+    <h2>갈아탈 대출</h2>
+    <div class="fields">
+      <div class="field">
+        <label class="label" for="newRate">새 금리</label>
+        <div class="input"><input id="newRate" name="newRate" inputmode="decimal" data-decimal value="3.9"><span class="unit">%</span></div>
+      </div>
+      <div class="field">
+        <label class="label" for="newYears">새 대출 기간</label>
+        <div class="input"><input id="newYears" name="newYears" inputmode="numeric" data-int value="27"><span class="unit">년</span></div>
+      </div>
+      <div class="field full">
+        <label class="label" for="cost">부대비용 (인지세 분담·감정평가 등)</label>
+        <div class="input"><input id="cost" name="cost" inputmode="numeric" data-money value="50"><span class="unit">만원</span></div>
+        <div class="korean" data-for="cost"></div>
+      </div>
+    </div>
+
+    <div class="result" aria-live="polite">
+      <div class="k">갈아타기 순절감 (이자 절감 − 수수료 − 부대비용)</div>
+      <div class="big" id="net">—</div>
+      <div class="verdict" id="verdict"></div>
+      <div class="rows" id="rows"></div>
+    </div>
+  </form>
+
+  <h2>갈아타기 판단은 이렇게</h2>
+  <ol>
+    <li><b>줄어드는 이자</b>를 구합니다. 같은 원금을 같은 기간 동안 새 금리로 갚을 때 남은 총이자가 얼마나 줄어드는지 봅니다.</li>
+    <li><b>갈아타는 비용</b>을 더합니다. 대출 후 3년이 안 됐다면 기존 대출의 중도상환수수료, 그리고 새 대출의 인지세 분담분·감정평가 등 부대비용이 듭니다.</li>
+    <li><b>회수 기간</b>을 봅니다. 매달 줄어드는 이자가 쌓여 비용을 넘는 시점이 회수 시점입니다. 그 전에 집을 팔거나 다시 갈아탈 계획이라면 손해일 수 있습니다.</li>
+  </ol>
+
+  <h3>기간을 늘리는 갈아타기는 조심</h3>
+  <p>새 대출 기간을 남은 기간보다 길게 잡으면 월 납입액은 확 줄지만 이자를 내는 기간이 늘어납니다. 예를 들어 남은 원금 3억, 금리 4.0%에 10년이 남은 대출을 3.8% 30년으로 갈아타면 월 납입액은 304만원에서 140만원으로 절반 넘게 줄지만, 총이자는 약 6,400만원에서 2억원 이상으로 세 배 넘게 늘어납니다. 이 계산기는 이런 경우를 "순손실"로 보여 주고 회수 시점을 표시하지 않습니다.</p>
+
+  <h3>부대비용 항목</h3>
+  <div class="card">
+    <table>
+      <thead><tr><th>항목</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><td>중도상환수수료</td><td>기존 대출 후 3년 이내면 부과. 갚는 금액 × 수수료율 × 남은 기간 비율 (<a href="/prepayment/">중도상환수수료 계산기</a>)</td></tr>
+        <tr><td>인지세</td><td>대출 약정서에 붙는 세금. 대출금 5천만원 초과 1억 이하 7만원, 1억 초과 10억 이하 15만원을 보통 은행과 절반씩 부담</td></tr>
+        <tr><td>기타</td><td>감정평가, 근저당 설정 관련 비용 등은 은행·상품마다 부담 주체가 다르니 상담 때 확인</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>자주 묻는 질문</h2>
+  <details class="faq">
+    <summary>금리가 얼마나 낮아야 이득인가요?</summary>
+    <p>정해진 기준은 없고 잔액·남은 기간·비용에 따라 다릅니다. 잔액이 크고 남은 기간이 길수록 0.3%p 정도 차이로도 이득이 날 수 있습니다. 대출 후 3년이 안 돼 수수료가 크거나 남은 기간이 짧으면 금리 차이가 더 커야 합니다. 위 계산기에 내 조건을 넣어 확인하세요.</p>
+  </details>
+  <details class="faq">
+    <summary>"회수 기간"은 어떻게 계산하나요?</summary>
+    <p>매달 두 대출의 이자 차이를 쌓아 가다가, 그 합이 수수료와 부대비용을 넘는 달을 회수 시점으로 봅니다. 월 납입액 차이에는 원금이 섞여 있어 이자 차이로만 계산합니다.</p>
+  </details>
+  <details class="faq">
+    <summary>갈아탈 때 대출 한도가 다시 계산되나요?</summary>
+    <p>새 대출을 받는 것이므로 은행이 소득·DSR·LTV를 다시 심사합니다. 그사이 규제가 바뀌었다면 지금 잔액만큼 빌리지 못할 수 있으니 <a href="/stress-dsr/">스트레스 DSR 계산기</a>로 미리 확인해 보세요.</p>
+  </details>
+
+  <section class="cta">
+    <h2>대환 비교·금리 변동 시뮬레이션은 앱에서</h2>
+    <p>지금 대출과 갈아탈 대출을 저장해 두고 언제든 다시 비교하세요. 로그인 없이 오프라인으로 씁니다.</p>
+    <a class="app-link" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">Google Play에서 받기</a>
+  </section>
+
+  <h2>다른 계산기</h2>
+  <div class="tools">
+    <a class="tool" href="/prepayment/"><h2>중도상환수수료 계산기 →</h2><p>목돈으로 일부를 먼저 갚을 때 수수료와 줄어드는 이자를 비교합니다.</p></a>
+    <a class="tool" href="/stress-dsr/"><h2>스트레스 DSR 계산기 →</h2><p>연소득과 주택 가격으로 최대 대출 가능액을 계산합니다.</p></a>
+  </div>
+
+  <footer class="site">
+    <p>은행권 주택담보대출 일반 기준을 단순화한 참고용 계산입니다. 실제 금리·비용·심사 결과는 금융기관에 확인하세요.</p>
+    <p>© 내집플랜 · <a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · 문의 wblee30@gmail.com</p>
+  </footer>
+</main>
+
+<script type="module">
+import { calculateRefinance } from '../js/loan-core.js';
+import { attachInputFilters, showKoreanAmounts, manwon, monthsText, num, tagAppLinks, urlSync } from '../js/ui.js';
+
+const form = document.getElementById('form');
+const $ = (id) => document.getElementById(id);
+const sync = urlSync(form, ['balance', 'rate', 'remain', 'elapsed', 'fee', 'method', 'newRate', 'newYears', 'cost']);
+tagAppLinks('refinance');
+attachInputFilters(form);
+const row = (k, v) => `<div class="row"><span>${k}</span><span>${v}</span></div>`;
+
+function render() {
+  showKoreanAmounts(form);
+  sync.save();
+  const balance = num($('balance').value) * 1e4;
+  const remainingMonths = Math.round(num($('remain').value) * 12);
+  const newMonths = Math.round(num($('newYears').value) * 12);
+  if (balance <= 0 || remainingMonths < 1 || newMonths < 1) {
+    $('net').textContent = '—';
+    $('verdict').textContent = '남은 원금과 기간을 입력하세요.';
+    $('rows').innerHTML = '';
+    return;
+  }
+  const r = calculateRefinance({
+    balance, currentRate: num($('rate').value), remainingMonths, method: form.elements.method.value,
+    newRate: num($('newRate').value), newMonths, elapsedMonths: Math.round(num($('elapsed').value)),
+    feeRatePercent: num($('fee').value), extraCosts: num($('cost').value) * 1e4,
+  });
+  $('net').textContent = manwon(r.netSaving);
+  $('net').classList.toggle('loss', r.netSaving < 0);
+  let verdict;
+  if (r.netSaving < 0) {
+    verdict = newMonths > remainingMonths && r.newMonthlyPayment < r.currentMonthlyPayment
+      ? `기간이 ${monthsText(newMonths - remainingMonths)} 늘어 월 납입액은 줄지만 총비용이 ${manwon(-r.netSaving)} 늘어납니다.`
+      : `갈아타면 비용이 줄어드는 이자보다 ${manwon(-r.netSaving)} 많습니다.`;
+  } else if (r.breakEvenMonth) {
+    verdict = `${monthsText(r.breakEvenMonth)} 뒤부터 비용을 회수해 이득입니다. 그 전에 다시 갈아타거나 집을 팔면 손해일 수 있습니다.`;
+  } else {
+    verdict = '비용 없이 이자만 줄어듭니다.';
+  }
+  $('verdict').textContent = verdict;
+  $('rows').innerHTML = [
+    row('월 납입액 (첫 달)', `${manwon(r.currentMonthlyPayment)} → ${manwon(r.newMonthlyPayment)}`),
+    row('남은 총이자', `${manwon(r.remainingInterestCurrent)} → ${manwon(r.totalInterestNew)}`),
+    row('이자 절감', manwon(r.interestSaved)),
+    row('중도상환수수료', r.prepaymentFee > 0 ? manwon(r.prepaymentFee) : '0원 (3년 경과로 면제)'),
+    row('부대비용', manwon(r.extraCosts)),
+    row('비용 회수 시점', r.breakEvenMonth ? `${monthsText(r.breakEvenMonth)} 뒤` : '없음'),
+  ].join('');
+}
+
+sync.load();
+form.addEventListener('input', render);
+form.addEventListener('change', render);
+render();
+</script>
+</body>
+</html>

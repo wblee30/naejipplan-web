@@ -3,81 +3,101 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>내집플랜 — DSR·대출 계산기, 내집마련 자금 계획</title>
-<meta name="description" content="스트레스 DSR·LTV 한도, 대출 이자, 중도상환까지. 아파트 매수를 준비하는 분들을 위한 무료 대출 계산기 모음.">
+<title>내집플랜 — 주택담보대출 한도·DSR 계산과 내집마련 자금 계획</title>
+<meta name="description" content="주택담보대출 한도는 LTV·DSR·금액 상한 중 가장 작은 값으로 정해집니다. 2026년 10월 기준 스트레스 DSR·규제지역 LTV·수도권 대출 상한과 매수 전 준비할 숫자를 정리하고, 무료 계산기로 내 한도를 바로 확인하세요.">
 <link rel="canonical" href="https://naejipplan.com/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="내집플랜 — DSR·대출 계산기">
-<meta property="og:description" content="스트레스 DSR·LTV 한도부터 내집마련 자금 계획까지">
+<meta property="og:title" content="내집플랜 — 주택담보대출 한도·DSR 계산">
+<meta property="og:description" content="LTV·DSR·스트레스 DSR로 정해지는 내 주담대 한도, 2026년 10월 기준으로 정리">
 <meta property="og:url" content="https://naejipplan.com/">
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#1b5e20">
 <meta name="google-adsense-account" content="ca-pub-7787037944336770">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<style>
-:root {
-  --bg: #f6f8f6; --surface: #ffffff; --text: #17201a; --muted: #5b6a5f; --border: #d9e2da;
-  --brand: #1b5e20; --brand-soft: #e3f0e4; --on-brand: #ffffff; color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0f1411; --surface: #171e19; --text: #e6ede7; --muted: #9db0a1; --border: #2c382f;
-    --brand: #81c784; --brand-soft: #1f3322; --on-brand: #0d1f0f; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0f1411; --surface: #171e19; --text: #e6ede7; --muted: #9db0a1; --border: #2c382f;
-  --brand: #81c784; --brand-soft: #1f3322; --on-brand: #0d1f0f; color-scheme: dark;
-}
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; word-break: keep-all;
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif; }
-.wrap { max-width: 720px; margin: 0 auto; padding: 40px 16px; }
-h1 { font-size: clamp(26px, 6vw, 34px); margin: 0 0 8px; letter-spacing: -.02em; color: var(--brand); }
-.lead { color: var(--muted); margin: 0 0 28px; }
-.tools { display: grid; gap: 12px; }
-a.tool { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--border);
-  border-radius: 16px; padding: 18px 20px; transition: border-color .15s; }
-a.tool:hover, a.tool:focus-visible { border-color: var(--brand); }
-a.tool h2 { margin: 0 0 4px; font-size: 18px; }
-a.tool p { margin: 0; color: var(--muted); font-size: 15px; }
-.soon { opacity: .6; border-style: dashed; padding: 18px 20px; border-radius: 16px; border: 1px dashed var(--border); }
-.soon h2 { margin: 0 0 4px; font-size: 18px; }
-.soon p { margin: 0; color: var(--muted); font-size: 15px; }
-.cta { margin-top: 28px; background: var(--brand); color: var(--on-brand); border-radius: 16px; padding: 20px; }
-.cta h2 { margin: 0 0 4px; font-size: 18px; }
-.cta p { margin: 0 0 14px; opacity: .9; font-size: 14px; }
-.cta a { display: inline-block; background: var(--on-brand); color: var(--brand); font-weight: 800; text-decoration: none; padding: 12px 18px; border-radius: 12px; }
-footer { margin-top: 40px; font-size: 13px; color: var(--muted); }
-footer a { color: var(--brand); }
-</style>
+<link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
-<main class="wrap">
-  <h1>내집플랜</h1>
-  <p class="lead">아파트 매수를 준비하는 분들을 위한 대출 계산기. 입력값은 서버로 전송되지 않습니다.</p>
+<header class="site">
+  <div class="bar">
+    <a class="logo" href="/">내집플랜</a>
+    <nav><a href="/#tools">계산기</a><a href="/about/">소개</a></nav>
+  </div>
+</header>
 
-  <div class="tools">
+<main class="wrap">
+  <h1>내 주택담보대출 한도, 어떻게 정해질까</h1>
+  <p class="lead">아파트를 사기 전에 꼭 확인해야 할 숫자는 "얼마까지 빌릴 수 있는가"입니다. 은행이 주담대 한도를 정하는 방식과 2026년 하반기에 달라진 규제를 정리했습니다. 내 조건으로 바로 계산하려면 아래 계산기를 쓰세요.</p>
+  <span class="asof">2026년 10월 규제 기준</span>
+
+  <div class="tools" id="tools">
     <a class="tool" href="/stress-dsr/">
       <h2>스트레스 DSR 계산기 →</h2>
-      <p>연소득·주택 가격·금리 유형으로 LTV·DSR·주담대 금액 상한을 반영한 최대 대출 가능액 계산 (2026년 10월 규제 기준)</p>
+      <p>연소득·주택 가격·금리 유형을 넣으면 LTV·DSR·주담대 금액 상한을 모두 반영한 최대 대출 가능액과, 스트레스 금리 때문에 줄어든 한도를 보여 줍니다.</p>
     </a>
-    <div class="soon">
-      <h2>중도상환·대환 손익 계산기</h2>
-      <p>준비 중</p>
-    </div>
+    <a class="tool" href="/acquisition-cost/">
+      <h2>취득세·부대비용 계산기 →</h2>
+      <p>매매가로 취득세·중개보수·인지세·채권 비용을 합산하고, 자기자본을 빼 필요한 대출액까지 계산합니다.</p>
+    </a>
+    <a class="tool" href="/prepayment/">
+      <h2>중도상환수수료 계산기 →</h2>
+      <p>목돈으로 대출을 먼저 갚을 때 수수료와 줄어드는 이자를 비교하고, 수수료 면제 시점까지 기다릴 때와도 비교합니다.</p>
+    </a>
+    <a class="tool" href="/refinance/">
+      <h2>대환대출 계산기 →</h2>
+      <p>더 낮은 금리로 갈아탈 때 수수료·부대비용을 빼고도 이득인지, 비용을 몇 개월 만에 회수하는지 계산합니다.</p>
+    </a>
   </div>
+  <p class="note">모든 계산기는 입력값을 서버로 보내지 않고 브라우저 안에서 계산합니다.</p>
+
+  <h2>한도는 세 기준 중 가장 작은 값</h2>
+  <p>은행권 주택담보대출 한도는 아래 세 가지를 각각 계산한 뒤 가장 작은 금액으로 정해집니다. 소득이 많아도 집값이 낮으면 LTV에서, 집값이 높아도 소득이 적으면 DSR에서 한도가 막힙니다.</p>
+  <div class="card">
+    <table>
+      <thead><tr><th>기준과 계산</th><th>2026년 10월 기준 수치</th></tr></thead>
+      <tbody>
+        <tr><td><b>LTV</b> 담보인정비율<br><span class="note">주택 가격 × LTV 비율</span></td><td>규제지역 무주택 40% (서민·실수요자 60%, 생애최초 70%), 수도권 비규제 70%, 지방 70% (생애최초 80%)</td></tr>
+        <tr><td><b>DSR</b> 총부채원리금상환비율<br><span class="note">모든 대출의 1년치 원리금 ÷ 연소득</span></td><td>은행권 40% 이내. 스트레스 금리를 더해 계산</td></tr>
+        <tr><td><b>금액 상한</b><br><span class="note">주택 가격 구간별 고정 금액</span></td><td>수도권·규제지역 주택구입: 시가 15억 이하 6억, 25억 이하 4억, 25억 초과 2억</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>스트레스 DSR이 한도를 줄이는 원리</h2>
+  <p>스트레스 DSR은 DSR을 계산할 때만 실제 금리에 <b>스트레스 금리</b>를 더하는 제도입니다. 실제로 내는 이자는 그대로지만 계산상 원리금이 커져서 같은 소득으로 빌릴 수 있는 금액이 줄어듭니다.</p>
+  <ul>
+    <li><b>수도권·규제지역</b>: 기본 스트레스 금리 3%p</li>
+    <li><b>지방</b>: 0.75%p (2026년 12월 31일까지 완화 적용)</li>
+    <li><b>금리 유형별 반영비율</b>: 변동형 100%, 순수 고정형 0%. 혼합형·주기형은 고정기간이 만기에서 차지하는 비중이 클수록 낮아집니다. 예를 들어 수도권에서 30년 만기·5년 고정 혼합형이면 3%p × 80% = 2.4%p를 더합니다.</li>
+  </ul>
+  <p>연소득 7천만원, 수도권 비규제 7억 아파트, 4% 변동금리 30년 원리금균등이라면 스트레스 금리 없이 DSR 기준 한도는 약 4억 8,900만원이지만, 3%p를 더하면 약 3억 5,100만원으로 1억 3천만원 넘게 줄어듭니다. 같은 조건을 <a href="/stress-dsr/?region=capitalArea&amp;income=7000&amp;price=70000&amp;loan=40000&amp;rate=4&amp;years=30&amp;rateType=variable">계산기에서 바로 열어 볼 수 있습니다</a>.</p>
+
+  <h2>매수 전에 준비할 숫자</h2>
+  <ol>
+    <li><b>부부합산 연소득</b> — 원천징수영수증·소득금액증명 기준. DSR의 분모라 한도에 가장 큰 영향을 줍니다.</li>
+    <li><b>지금 갖고 있는 대출</b> — 신용대출·자동차 할부·학자금의 잔액, 금리, 남은 기간. 신용대출은 DSR에서 원금을 최대 5년으로 나눠 잡아 생각보다 크게 반영됩니다.</li>
+    <li><b>집 가격과 소재지</b> — 규제지역(서울 전역·경기 일부)인지, 수도권인지에 따라 LTV·스트레스 금리·금액 상한이 모두 달라집니다.</li>
+    <li><b>자기자본과 부대비용</b> — 1주택 기준 취득세 1~3%(지방교육세 별도), 중개보수 상한 0.4~0.7%, 인지세·채권 할인 비용까지 매매가의 몇 %가 더 듭니다. <a href="/acquisition-cost/">취득세·부대비용 계산기</a>로 내 금액을 확인하세요.</li>
+    <li><b>원하는 금리 유형</b> — 변동형은 금리가 낮아도 스트레스 금리가 100% 붙고, 고정기간이 긴 상품일수록 한도가 늘어납니다.</li>
+  </ol>
+
+  <h2>자주 하는 계산 실수</h2>
+  <ul>
+    <li><b>실제 금리로만 DSR을 계산</b> — 은행은 스트레스 금리를 더해 계산하므로, 실제 금리 기준 DSR이 40% 아래여도 한도를 넘을 수 있습니다.</li>
+    <li><b>40년 만기로 계산</b> — 수도권·규제지역 주담대는 만기가 최장 30년이라 40년을 가정하면 한도를 과대평가합니다.</li>
+    <li><b>LTV만 보고 자금 계획</b> — 고가 주택은 LTV보다 금액 상한이, 소득이 적으면 DSR이 먼저 걸립니다.</li>
+  </ul>
+  <p class="note">한국은행 기준금리는 연 3.00%입니다 (2026년 10월 22일 동결). 금리 변동은 변동형 대출의 실제 이자뿐 아니라 은행의 대출 금리를 통해 한도에도 영향을 줍니다.</p>
 
   <section class="cta">
     <h2>매물 비교·정책대출 진단까지 앱에서</h2>
-    <p>취득세 포함 총 필요 자금, 디딤돌·신생아특례 자가진단. 로그인 없이 오프라인으로.</p>
+    <p>관심 아파트를 A/B/C로 비교하고 취득세 포함 총 필요 자금, 디딤돌·신생아특례 자격을 확인하세요. 로그인 없이 오프라인으로 씁니다.</p>
     <a href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator&amp;referrer=utm_source%3Dweb%26utm_medium%3Dhome%26utm_campaign%3Dlanding">Google Play에서 받기</a>
   </section>
 
-  <footer>
-    <p>계산 결과는 참고용이며 실제 대출 조건은 금융기관 심사 기준을 따릅니다.</p>
-    <p>© 내집플랜 · <a href="https://wblee30.github.io/naejipplan-policy/">개인정보처리방침</a> · 문의 wblee30@gmail.com</p>
+  <footer class="site">
+    <p>이 사이트의 계산과 설명은 은행권 주택담보대출 일반 기준을 단순화한 참고 정보입니다. 실제 한도·금리·세율은 금융기관 심사와 정책 변경에 따라 달라지니 대출 실행 전 반드시 확인하세요.</p>
+    <p>© 내집플랜 · <a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · 문의 wblee30@gmail.com</p>
   </footer>
 </main>
 </body>

@@ -214,7 +214,6 @@ tr.current td { font-weight: 700; color: var(--brand); }
 
 ul.notes { margin: 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
 
-.ad-slot { margin: 16px 0; min-height: 100px; border: 1px dashed var(--border); border-radius: 12px; display: grid; place-items: center; color: var(--muted); font-size: 13px; }
 
 .cta { display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--brand); color: var(--on-brand); border-radius: 16px; padding: 20px; margin: 24px 0; }
 .cta h2 { margin: 0 0 4px; font-size: 18px; }
@@ -230,6 +229,9 @@ details.faq { border-bottom: 1px solid var(--border); padding: 12px 0; }
 details.faq summary { cursor: pointer; font-weight: 700; }
 details.faq p { margin: 8px 0 0; color: var(--muted); }
 
+.more { margin: 8px 0 0; }
+.more h2 { font-size: 18px; margin: 0 0 6px; }
+.more ul { margin: 0; padding-left: 20px; }
 footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
 </style>
 </head>
@@ -383,8 +385,7 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
     </div>
   </div>
 
-  <!-- AdSense 슬롯 1: 결과 바로 아래 (승인 후 <ins class="adsbygoogle"> 코드로 교체) -->
-  <div class="ad-slot" aria-hidden="true">광고 영역</div>
+  <!-- AdSense 슬롯 1: 결과 바로 아래. 승인 후 여기에 <ins class="adsbygoogle"> 광고 단위를 넣는다 (빈 자리 상자는 두지 않는다) -->
 
   <div class="grid">
     <section class="card">
@@ -409,6 +410,15 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
       <p>취득세 포함 총 필요 자금, 중도상환·대환 손익, 디딤돌·신생아특례 자가진단. 로그인 없이 오프라인으로.</p>
     </div>
     <a class="app-link" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">Google Play에서 받기</a>
+  </section>
+
+  <section class="more">
+    <h2>함께 쓰면 좋은 계산기</h2>
+    <ul>
+      <li><a href="/acquisition-cost/">취득세·부대비용 계산기</a> — 매매가로 세금·수수료와 필요한 대출액 계산</li>
+      <li><a href="/prepayment/">중도상환수수료 계산기</a> — 먼저 갚을 때 수수료 vs 이자 절감</li>
+      <li><a href="/refinance/">대환대출 계산기</a> — 갈아타기 순절감과 회수 기간</li>
+    </ul>
   </section>
 
   <article class="content">
@@ -450,7 +460,7 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
       <li><b>금액 상한</b>: 수도권·규제지역 주택구입 주담대는 시가 15억 이하 6억, 25억 이하 4억, 25억 초과 2억.</li>
     </ul>
 
-    <div class="ad-slot" aria-hidden="true">광고 영역</div>
+    <!-- AdSense 슬롯 2: 본문 중간. 승인 후 여기에 광고 단위를 넣는다 -->
 
     <h2>자주 묻는 질문</h2>
     <details class="faq">
@@ -472,7 +482,7 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
 
     <footer>
       <p>이 계산기는 은행권 주택담보대출 일반 기준을 단순화한 참고용입니다. 실제 한도는 은행 심사, 소득 증빙, 주택 수, 정책 변경에 따라 달라지니 대출 실행 전 반드시 금융기관에 확인하세요. 규제 기준: <span id="asof-foot"></span>.</p>
-      <p>© 내집플랜 · <a href="https://wblee30.github.io/naejipplan-policy/">개인정보처리방침</a> · 문의 wblee30@gmail.com</p>
+      <p>© 내집플랜 · <a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · 문의 wblee30@gmail.com</p>
     </footer>
   </article>
 </main>

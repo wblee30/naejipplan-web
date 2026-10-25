@@ -336,13 +336,9 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
             <label class="label" for="cBal">잔액</label>
             <div class="input"><input id="cBal" name="cBal" inputmode="numeric" data-money value=""><span class="unit">만원</span></div>
           </div>
-          <div class="field">
+          <div class="field full">
             <label class="label" for="cRate">금리</label>
             <div class="input"><input id="cRate" name="cRate" inputmode="decimal" data-decimal value="5.5"><span class="unit">%</span></div>
-          </div>
-          <div class="field">
-            <label class="label" for="cYears">잔여 기간</label>
-            <div class="input"><input id="cYears" name="cYears" inputmode="decimal" data-decimal value="5"><span class="unit">년</span></div>
           </div>
         </div>
         <div class="subhead">분할상환 대출 (자동차 할부·학자금 등)</div>
@@ -360,7 +356,7 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
             <div class="input"><input id="iYears" name="iYears" inputmode="decimal" data-decimal value="3"><span class="unit">년</span></div>
           </div>
         </div>
-        <div class="hint">신용대출은 원금을 잔여 기간(최대 5년)으로 나눠, 분할상환 대출은 다음 12개월 원리금으로 DSR에 넣습니다.</div>
+        <div class="hint">신용대출·마이너스통장은 만기와 관계없이 원금을 5년으로 나눈 금액과 1년치 이자를, 분할상환 대출은 다음 12개월 원리금을 DSR에 넣습니다. 마이너스통장은 쓴 금액이 아니라 한도 전체를 넣으세요.</div>
       </details>
     </form>
 
@@ -418,6 +414,7 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
       <li><a href="/acquisition-cost/">취득세·부대비용 계산기</a> — 매매가로 세금·수수료와 필요한 대출액 계산</li>
       <li><a href="/prepayment/">중도상환수수료 계산기</a> — 먼저 갚을 때 수수료 vs 이자 절감</li>
       <li><a href="/refinance/">대환대출 계산기</a> — 갈아타기 순절감과 회수 기간</li>
+      <li><a href="/guide/dsr-limit-by-income/">연봉별 주담대 한도표</a> · <a href="/guide/rate-type-limit/">금리 유형별 한도 차이</a> · <a href="/guide/credit-loan-dsr/">신용대출의 영향</a></li>
     </ul>
   </section>
 
@@ -477,7 +474,7 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
     </details>
     <details class="faq">
       <summary>신용대출이 있으면 얼마나 줄어드나요?</summary>
-      <p>DSR 계산에서 신용대출은 원금을 잔여 기간(최대 5년)으로 나눈 금액과 이자를 1년치 상환액으로 봅니다. 신용대출 5천만원이면 연 1천만원 이상이 DSR에 잡혀 주담대 한도가 크게 줄 수 있습니다. "보유 중인 다른 대출"에 넣어 확인해 보세요.</p>
+      <p>DSR 계산에서 신용대출과 마이너스통장은 실제 만기와 관계없이 원금을 5년으로 나눈 금액과 1년치 이자를 상환액으로 봅니다. 신용대출 5천만원이면 연 1천만원 넘게 DSR에 잡혀 주담대 한도가 크게 줄 수 있습니다. "보유 중인 다른 대출"에 넣어 확인해 보세요.</p>
     </details>
 
     <footer>
@@ -536,7 +533,7 @@ form.querySelectorAll('[data-decimal]').forEach((el) => el.addEventListener('inp
 function readInputs() {
   const otherLoans = [];
   const cBal = num($('cBal').value) * 1e4;
-  if (cBal > 0) otherLoans.push({ balance: cBal, annualRate: num($('cRate').value), remainingMonths: Math.round(num($('cYears').value) * 12), isCredit: true });
+  if (cBal > 0) otherLoans.push({ balance: cBal, annualRate: num($('cRate').value), remainingMonths: 0, isCredit: true });
   const iBal = num($('iBal').value) * 1e4;
   if (iBal > 0) otherLoans.push({ balance: iBal, annualRate: num($('iRate').value), remainingMonths: Math.round(num($('iYears').value) * 12) });
   return {

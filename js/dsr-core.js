@@ -197,15 +197,12 @@ export function dsrAnnualDebtService({
 }
 
 /// 기타 대출 연간 원리금 (DSR 산정용 근사).
-/// 신용대출: 원금 ÷ 잔여기간(최대 5년) + 이자. 그 외: 원리금 균등 다음 12개월 납입액.
+/// 신용대출(만기일시·마이너스통장): 실제 만기와 관계없이 원금 ÷ 5년 + 1년치 이자 (신용대출 DSR 산정만기 5년 일괄).
+/// 그 외 분할상환: 원리금 균등 다음 12개월 납입액.
 export function otherLoanAnnualDebtService({ balance, annualRate, remainingMonths, isCredit = false }) {
-  if (remainingMonths <= 0 || balance <= 0) return 0;
-  if (isCredit) {
-    const years = Math.min(remainingMonths / 12, dsrCreditMaxYears);
-    const principalPart = years >= 1 ? balance / years : balance;
-    const interestPart = balance * annualRate / 100 * Math.min(1, remainingMonths / 12);
-    return principalPart + interestPart;
-  }
+  if (balance <= 0) return 0;
+  if (isCredit) return balance / dsrCreditMaxYears + balance * annualRate / 100;
+  if (remainingMonths <= 0) return 0;
   return dsrAnnualDebtService({ principal: balance, annualRate, months: remainingMonths });
 }
 

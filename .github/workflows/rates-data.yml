@@ -1,0 +1,48 @@
+# 앱 금리 탭·시장 지표용 data/rates.json 갱신.
+# 키는 Settings → Secrets and variables → Actions의 ECOS_API_KEY, FRED_API_KEY에만 둔다.
+# 값이 바뀐 경우에만 커밋한다 (월별 통계라 한 달에 몇 번 수준). 실패하면 Actions 실패 메일이 온다.
+name: rates-data
+
+on:
+  schedule:
+    - cron: '17 */3 * * *' # 3시간마다 (UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rates-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch ECOS / FRED
+        id: fetch
+        env:
+          ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: node .github/scripts/fetch-rates.mjs data/rates.json
+
+      # 일부 시리즈가 실패해도 받은 값은 올린다 (실패 표시는 위 단계가 남긴다)
+      - name: Commit if changed
+        if: ${{ !cancelled() }}
+        run: |
+          git add data/rates.json 2>/dev/null || exit 0
+          if git diff --cached --quiet; then
+            echo "변경 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "data: 금리·지표 갱신"
+          git push

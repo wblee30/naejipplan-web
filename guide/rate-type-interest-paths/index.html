@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>고정·변동·혼합형 주담대, 금리 경로별 총이자 비교 | 내집플랜</title>
+<meta name="description" content="주택담보대출 3억원을 변동형·5년 혼합형·고정형으로 받았을 때, 앞으로 금리가 그대로이거나 1%p·2%p 오르거나 1%p 내리는 경우의 월 상환액과 30년 총이자를 계산했습니다. 변동형이 고정형보다 비싸지는 금리 상승폭, 5년 안에 팔 때의 이자, 금리 유형별 DSR 한도 차이도 정리했습니다.">
+<link rel="canonical" href="https://naejipplan.com/guide/rate-type-interest-paths/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="고정·변동·혼합형 주담대, 금리 경로별 총이자 비교">
+<meta property="og:description" content="주택담보대출 3억원을 변동형·5년 혼합형·고정형으로 받았을 때, 앞으로 금리가 그대로이거나 1%p·2%p 오르거나 1%p 내리는 경우의 월 상환액과 30년 총이자를 계산했습니다. 변동형이 고정형보다 비싸지는 금리 상승폭, 5년 안에 팔 때의 이자, 금리 유형별 DSR 한도 차이도 정리했습니다.">
+<meta property="og:url" content="https://naejipplan.com/guide/rate-type-interest-paths/">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#1b5e20">
+<meta name="google-adsense-account" content="ca-pub-7787037944336770">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "고정·변동·혼합형 주담대, 금리 경로별 총이자 비교", "description": "주택담보대출 3억원을 변동형·5년 혼합형·고정형으로 받았을 때, 앞으로 금리가 그대로이거나 1%p·2%p 오르거나 1%p 내리는 경우의 월 상환액과 30년 총이자를 계산했습니다. 변동형이 고정형보다 비싸지는 금리 상승폭, 5년 안에 팔 때의 이자, 금리 유형별 DSR 한도 차이도 정리했습니다.", "inLanguage": "ko", "datePublished": "2026-11-22", "dateModified": "2026-11-22", "author": {"@type": "Organization", "name": "내집플랜", "url": "https://naejipplan.com/about/"}, "publisher": {"@type": "Organization", "name": "내집플랜"}, "mainEntityOfPage": "https://naejipplan.com/guide/rate-type-interest-paths/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+{"@type": "Question", "name": "고정금리가 변동금리보다 0.4%p 높으면 어느 쪽이 이자가 적나요?", "acceptedAnswer": {"@type": "Answer", "text": "앞으로의 금리에 달려 있습니다. 대출 3억원·30년 기준으로, 변동금리가 3년차부터 약 0.45%p 이상 올라 그대로 유지되면 처음에 0.4%p 높은 고정금리의 총이자가 더 적어집니다. 변동금리가 그대로이거나 내리면 변동형의 총이자가 적습니다."}},
+{"@type": "Question", "name": "혼합형은 변동형과 무엇이 다른가요?", "acceptedAnswer": {"@type": "Answer", "text": "처음 몇 년(예: 5년)은 금리가 고정되고 그 뒤 변동금리로 바뀝니다. 고정기간 동안은 금리가 올라도 월 상환액이 그대로라, 대출 3억원에서 변동금리가 2%p 올라도 5년간은 월 146만 7천원을 유지합니다. 6년차부터는 변동금리를 따라갑니다."}},
+{"@type": "Question", "name": "금리 유형에 따라 대출 한도도 달라지나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 스트레스 DSR은 금리가 오래 고정될수록 스트레스 금리를 적게 반영합니다. 연소득 7천만원·수도권 기준으로 변동형 연 4.0%의 한도는 3억 5,072만원, 5년 혼합형 4.2%는 3억 6,535만원, 고정형 4.4%는 4억 6,596만원입니다."}}
+]}</script>
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <a class="logo" href="/">내집플랜</a>
+    <nav><a href="/#tools">계산기</a><a href="/guide/">가이드</a><a href="/about/">소개</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="crumb"><a href="/guide/">가이드</a></p>
+  <h1>고정·변동·혼합형 주담대, 금리 경로별 총이자 비교</h1>
+  <p class="note">2026년 10월 규제 기준 · 작성 2026.11.22 · 내집플랜</p>
+
+  <p class="lead">고정형은 금리가 조금 높은 대신 앞으로 금리가 어떻게 되든 상환액이 같고, 변동형은 지금 금리가 낮은 대신 앞날이 열려 있습니다. 어느 쪽이 이자가 적은지는 결국 앞으로의 금리에 달려 있습니다. 이 글은 금리를 예측하지 않습니다. 대신 금리가 그대로일 때, 오를 때, 내릴 때를 각각 계산해 선택에 따라 결과의 폭이 얼마나 달라지는지 보여 줍니다.</p>
+  <div class="card assume">
+    <p><b>계산 조건</b> — 대출 3억원, 30년 원리금균등. 처음 금리는 변동형 연 4.0%, 5년 혼합형 4.2%(6년차부터 변동형 금리), 고정형 4.4%로 가정했습니다. 고정기간이 길수록 처음 금리가 조금 높은 경우가 많아 0.2%p씩 차이를 두었지만, 실제 차이는 은행과 시기마다 다릅니다. 변동금리는 3년차(25회차)부터 바뀐 금리가 끝까지 유지된다고 보고, 금리가 바뀔 때마다 남은 원금과 기간으로 월 상환액을 다시 계산했습니다.</p>
+  </div>
+
+  <h2>금리 경로별 30년 총이자</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>3년차부터 변동금리</th><th class="num">변동형</th><th class="num">5년 혼합형</th><th class="num">고정형</th></tr></thead>
+      <tbody>
+        <tr><td>그대로 (4.0%)</td><td class="num">2억 1,561만</td><td class="num">2억 1,907만</td><td class="num">2억 4,082만</td></tr>
+        <tr><td>+1%p (5.0%)</td><td class="num">2억 7,232만</td><td class="num">2억 6,542만</td><td class="num">2억 4,082만</td></tr>
+        <tr><td>+2%p (6.0%)</td><td class="num">3억 3,214만</td><td class="num">3억 1,418만</td><td class="num">2억 4,082만</td></tr>
+        <tr><td>−1%p (3.0%)</td><td class="num">1억 6,221만</td><td class="num">1억 7,528만</td><td class="num">2억 4,082만</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>가장 눈에 띄는 것은 <b>결과의 폭</b>입니다. 변동형의 30년 총이자는 금리 경로에 따라 1억 6,221만원부터 3억 3,214만원까지 두 배 넘게 벌어집니다. 고정형은 어떤 경우든 2억 4,082만원입니다. 혼합형은 처음 5년이 고정이라 폭이 조금 좁지만(1억 7,528만~3억 1,418만원), 그 뒤로는 변동형과 같은 금리를 따라가므로 결국 변동형에 가깝게 움직입니다.</p>
+  <p>금리가 그대로라면 처음 금리가 가장 낮은 변동형이 2,521만원 적고, 1%p만 올라도 고정형이 3,150만원 적습니다. 어느 한쪽이 항상 유리한 것이 아니라, 고정형은 "이자를 조금 더 내고 금리 변화의 위험을 넘기는" 선택이라는 뜻입니다.</p>
+
+  <h2>변동형이 고정형보다 비싸지는 지점</h2>
+  <p>위 가정에서 변동금리가 3년차부터 몇 %p 올라 그대로 유지되면 고정형(4.4%)과 30년 총이자가 같아지는지 계산하면 다음과 같습니다.</p>
+  <ul>
+    <li><b>변동형</b>: 약 <b>0.45%p</b> 상승 (4.0% → 약 4.45%)</li>
+    <li><b>5년 혼합형</b>: 약 <b>0.48%p</b> 상승</li>
+  </ul>
+  <p>처음 금리 차이(0.4%p)보다 조금 더 오르면 경계를 넘습니다. 처음 2년은 변동형이 싼 금리로 갚은 덕분에 약간의 여유가 생기기 때문입니다. 만약 금리 상승이 3년차가 아니라 더 늦게 온다면 경계는 더 높아지고, 더 일찍 오면 낮아집니다. 결국 "앞으로 30년 동안 변동금리 평균이 지금보다 0.4~0.5%p 이상 높을 것인가"가 판단 기준이 됩니다.</p>
+
+  <h2>월 상환액은 언제부터 달라지나</h2>
+  <p>총이자보다 생활에 더 직접 와닿는 것은 매달 내는 돈입니다. 같은 경로에서 월 상환액이 바뀌는 시점을 봤습니다.</p>
+  <div class="card">
+    <table>
+      <thead><tr><th>변동금리 +2%p일 때</th><th class="num">1~2년차</th><th class="num">3~5년차</th><th class="num">6년차 이후</th></tr></thead>
+      <tbody>
+        <tr><td>변동형</td><td class="num">143만 2천</td><td class="num">177만 9천</td><td class="num">177만 9천</td></tr>
+        <tr><td>5년 혼합형</td><td class="num">146만 7천</td><td class="num">146만 7천</td><td class="num">175만 4천</td></tr>
+        <tr><td>고정형</td><td class="num">150만 2천</td><td class="num">150만 2천</td><td class="num">150만 2천</td></tr>
+      </tbody>
+    </table>
+    <p class="note">단위 원, 천원 단위에서 반올림.</p>
+  </div>
+  <p>변동금리가 2%p 오르면 변동형은 3년차부터 월 34만 7천원이 늘어납니다. 혼합형은 고정기간이 끝나는 6년차까지 그대로였다가 그때 늘어납니다. 금리가 오르는 시기에 다른 지출(교육비, 차량 교체 등)이 겹칠 것 같다면, 혼합형의 고정기간이 그 시기를 덮는지도 따져 볼 만합니다. 반대로 금리가 1%p 내리면 변동형은 3년차부터 월 127만 3천원으로 줄어듭니다.</p>
+
+  <h2>5년 안에 팔거나 갈아탈 계획이라면</h2>
+  <p>30년을 다 채우지 않는다면 그 기간 동안 낸 이자만 비교하면 됩니다. 5년 동안 낸 이자입니다.</p>
+  <div class="card">
+    <table>
+      <thead><tr><th>3년차부터 변동금리</th><th class="num">변동형</th><th class="num">5년 혼합형</th><th class="num">고정형</th></tr></thead>
+      <tbody>
+        <tr><td>그대로</td><td class="num">5,728만</td><td class="num">6,023만</td><td class="num">6,319만</td></tr>
+        <tr><td>+1%p</td><td class="num">6,589만</td><td class="num">6,023만</td><td class="num">6,319만</td></tr>
+        <tr><td>+2%p</td><td class="num">7,454만</td><td class="num">6,023만</td><td class="num">6,319만</td></tr>
+        <tr><td>−1%p</td><td class="num">4,873만</td><td class="num">6,023만</td><td class="num">6,319만</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>5년 안에 팔 계획이라면 5년 혼합형은 사실상 5년 고정형입니다. 이 가정에서는 처음 금리가 고정형보다 0.2%p 낮아, 금리가 오르는 경우에도 고정형보다 296만원 적습니다. 보유 기간이 고정기간 안에 들어오면 혼합형의 장점이 커집니다. 다만 중간에 갚으면 중도상환수수료가 붙을 수 있으니 3년 이내 상환이라면 수수료도 함께 보세요(<a href="/guide/prepayment-fee-by-month/">중도상환수수료 경과 개월별 표</a>).</p>
+
+  <h2>금리 유형은 대출 한도도 바꾼다</h2>
+  <p>이자만 보고 고르기 전에 한도도 확인해야 합니다. 스트레스 DSR은 금리가 오래 고정될수록 스트레스 금리를 적게 더하기 때문입니다. 연소득 7천만원·수도권·30년 기준입니다.</p>
+  <div class="card">
+    <table>
+      <thead><tr><th>유형 (처음 금리)</th><th class="num">스트레스 금리</th><th class="num">DSR 한도</th></tr></thead>
+      <tbody>
+        <tr><td>변동형 (4.0%)</td><td class="num">+3.0%p</td><td class="num">3억 5,072만</td></tr>
+        <tr><td>5년 혼합형 (4.2%)</td><td class="num">+2.4%p</td><td class="num">3억 6,535만</td></tr>
+        <tr><td>5년 주기형 (4.2%)</td><td class="num">+1.2%p</td><td class="num">4억 1,553만</td></tr>
+        <tr><td>고정형 (4.4%)</td><td class="num">없음</td><td class="num">4억 6,596만</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>처음 금리가 가장 높은 고정형이 한도는 가장 큽니다. 변동형보다 1억 1,524만원 많습니다. DSR에서 한도가 막혀 원하는 금액이 안 나온다면, 금리 유형을 바꾸는 것이 한도를 늘리는 방법이 될 수 있습니다. 금리 유형별 스트레스 금리 반영 비율과 고정기간별 한도는 <a href="/guide/rate-type-limit/">변동형 vs 혼합형 vs 주기형 vs 고정형, 대출 한도 차이</a>에 자세히 정리했습니다.</p>
+
+  <h2>고를 때 볼 순서</h2>
+  <ol>
+    <li><b>한도</b>: 필요한 금액이 변동형 한도 안에 들어오는지 먼저 봅니다. 안 된다면 고정기간이 긴 유형이 사실상 선택지입니다.</li>
+    <li><b>보유 기간</b>: 몇 년 안에 팔거나 갈아탈 계획이라면 그 기간을 덮는 혼합형의 고정기간이 유리할 수 있습니다.</li>
+    <li><b>월 상환액의 여유</b>: 변동금리가 2%p 올라 월 상환액이 34만원 넘게 늘어도 감당할 수 있는지 확인합니다. 어렵다면 고정형이 그 위험을 덜어 줍니다.</li>
+    <li><b>금리 차이</b>: 실제 상담에서 받은 금리로 위 계산을 다시 해 봅니다. 고정형과 변동형의 처음 금리 차이가 클수록 경계 상승폭도 커집니다.</li>
+  </ol>
+
+  <h2>자주 묻는 질문</h2>
+  <h3>고정금리가 변동금리보다 0.4%p 높으면 어느 쪽이 이자가 적나요?</h3>
+  <p>변동금리가 3년차부터 약 0.45%p 이상 올라 유지되면 고정형이, 그보다 덜 오르거나 내리면 변동형이 30년 총이자가 적습니다.</p>
+  <h3>혼합형은 변동형과 무엇이 다른가요?</h3>
+  <p>처음 몇 년은 금리가 고정되고 그 뒤 변동금리로 바뀝니다. 대출 3억원에서 변동금리가 2%p 올라도 5년간은 월 146만 7천원을 유지하고, 6년차부터 175만 4천원으로 늘어납니다.</p>
+  <h3>금리 유형에 따라 대출 한도도 달라지나요?</h3>
+  <p>네. 연소득 7천만원·수도권 기준 변동형 3억 5,072만원, 5년 혼합형 3억 6,535만원, 고정형 4억 6,596만원으로 고정기간이 길수록 한도가 큽니다.</p>
+
+  <h2>내 조건으로 계산하려면</h2>
+  <p><a href="/stress-dsr/?region=capitalArea&amp;income=7000&amp;price=80000&amp;loan=40000&amp;rate=4.2&amp;years=30&amp;rateType=mixed&amp;fixedYears=5">스트레스 DSR 계산기</a>에서 금리 유형과 고정기간을 바꾸면 유형별 한도를 바로 비교할 수 있습니다. 링크는 수도권·연소득 7천만원·8억원 아파트·5년 혼합형이 입력된 상태로 열립니다. 금리 경로에 따른 월 상환액과 총이자는 앱의 대출계산 탭에서 "금리 변동 구간"에 "3년차부터 5.0%"처럼 넣어 계산할 수 있습니다.</p>
+
+  <h2>근거</h2>
+  <ul class="note">
+    <li>스트레스 DSR 3단계, 금리 유형·고정기간별 스트레스 금리 반영 비율: 금융위원회 스트레스 DSR 3단계 시행방안 (2025년 7월) — <a href="https://www.fsc.go.kr/no010101">금융위원회 보도자료</a></li>
+    <li>변동금리 지표(코픽스 등) 공시: <a href="https://portal.kfb.or.kr/">은행연합회 소비자포털</a></li>
+    <li>모든 금액은 내집플랜 계산 모듈로 계산했습니다. 계산 방식은 <a href="/about/">소개</a>에 정리되어 있습니다.</li>
+  </ul>
+
+  <section class="cta">
+    <h2>내 금리 시나리오를 직접 넣어 보려면</h2>
+    <p>앱의 대출계산 탭에서 "금리 변동 구간"을 여러 개 넣으면 혼합형의 고정기간 종료나 금리 인상·인하 시나리오를 그대로 계산하고, 연도별 상환 계획과 그래프로 볼 수 있습니다. 로그인 없이 씁니다.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator&amp;referrer=utm_source%3Dweb%26utm_medium%3Dguide%26utm_campaign%3Drate-type-interest-paths">Google Play에서 받기</a>
+  </section>
+
+  <h2>다른 가이드</h2>
+  <div class="tools">
+    <a class="tool" href="/guide/rate-type-limit/"><h2>변동형 vs 혼합형 vs 주기형 vs 고정형, 대출 한도 차이 →</h2><p>같은 연봉이라도 금리 유형에 따라 스트레스 DSR 한도가 달라집니다. 고정기간별 스트레스 금리와 한도를 비교했습니다.</p></a>
+    <a class="tool" href="/guide/rate-rise-monthly-payment/"><h2>금리 1%p 오르면 월 상환액은 얼마나 늘까 →</h2><p>대출 1억~6억원별로 금리가 오르내릴 때 월 상환액과 총이자, 대출 한도가 어떻게 바뀌는지 표로 정리했습니다.</p></a>
+    <a class="tool" href="/guide/refinance-rate-gap/"><h2>대환대출, 금리가 몇 %p 낮아야 이득일까 →</h2><p>대출을 갈아탈 때 금리 차이별 월 상환액·총이자 절감과 중도상환수수료·부대비용을 비교해 손익분기 시점을 계산했습니다.</p></a>
+  </div>
+
+  <footer class="site">
+    <p>금리 경로는 계산을 위한 가정이며 금리 전망이나 상품 권유가 아닙니다. 실제 금리·변동 주기·한도는 은행과 상품에 따라 다르니 대출 실행 전 금융기관에 확인하세요.</p>
+    <p>© 내집플랜 · <a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/terms/">이용약관</a> · 문의 wblee30@gmail.com</p>
+  </footer>
+</main>
+</body>
+</html>

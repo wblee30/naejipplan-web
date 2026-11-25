@@ -95,8 +95,25 @@ export function urlSync(form, keys) {
   };
 }
 
-/// Play 설치 링크(.app-link)에 유입 경로를 붙인다 (Play Console 획득 보고서용).
+/// Play 설치 링크(.app-link)에 유입 경로를 중복 없이 붙인다 (Play Console 획득 보고서용).
 export function tagAppLinks(campaign) {
-  const referrer = encodeURIComponent(`utm_source=web&utm_medium=calculator&utm_campaign=${campaign}`);
-  document.querySelectorAll('.app-link').forEach((a) => { a.href += `&referrer=${referrer}`; });
+  document.querySelectorAll('.app-link').forEach((a) => {
+    let url;
+    try {
+      url = new URL(a.href);
+    } catch (_) {
+      return;
+    }
+    const placement = a.dataset.placement ||
+      (a.closest('header.site') ? 'header' :
+        a.closest('.result-cta') ? 'result_inline' :
+        a.closest('.cta') ? 'bottom_cta' : 'inline');
+    const ref = new URLSearchParams(url.searchParams.get('referrer') || '');
+    ref.set('utm_source', 'web');
+    ref.set('utm_medium', 'calculator');
+    ref.set('utm_campaign', campaign);
+    ref.set('utm_content', placement);
+    url.searchParams.set('referrer', ref.toString());
+    a.href = url.toString();
+  });
 }

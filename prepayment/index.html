@@ -15,6 +15,7 @@
 <meta name="google-adsense-account" content="ca-pub-7787037944336770">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="내집플랜">
 <link rel="stylesheet" href="/css/site.css">
 <script type="application/ld+json">
 {
@@ -33,12 +34,13 @@
   ]
 }
 </script>
+<script src="/js/site-app.js" defer></script>
 </head>
 <body>
 <header class="site">
   <div class="bar">
     <a class="logo" href="/">내집플랜</a>
-    <nav><a href="/#tools">계산기</a><a href="/guide/">가이드</a><a href="/about/">소개</a></nav>
+    <nav><a href="/#tools">계산기</a><a href="/guide/">가이드</a><a href="/about/">소개</a><a class="nav-app app-link" data-placement="header" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">앱 설치</a></nav>
   </div>
 </header>
 
@@ -104,6 +106,10 @@
         <div id="chart"></div>
         <div class="cap">갚는 시점(대출 후 개월)별 순이득. 점선은 수수료가 면제되는 36개월, 점은 지금 입력한 시점입니다.</div>
       </div>
+      <div class="result-cta">
+        <div class="result-cta-text"><b>금리 변동 구간 시뮬레이션·연도별 상환 스케줄 PDF 저장</b>까지 앱에서 한 번에 확인할 수 있습니다.</div>
+        <a class="app-link" data-placement="result_inline" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">앱에서 계산</a>
+      </div>
     </div>
   </form>
 
@@ -143,8 +149,8 @@
 
   <section class="cta">
     <h2>대출 시뮬레이션·대환 비교까지 앱에서</h2>
-    <p>상환 스케줄, 금리 변동 시뮬레이션, 대환 비교를 한 앱에서. 로그인 없이 오프라인으로 씁니다.</p>
-    <a class="app-link" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">Google Play에서 받기</a>
+    <p>상환 스케줄, 금리 변동 시뮬레이션, 대환 비교, PDF 리포트까지 한 앱에서. 로그인 없이 내 기기에 자동 저장됩니다.</p>
+    <a class="app-link" data-placement="bottom_cta" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">Google Play에서 받기</a>
   </section>
 
   <h2>다른 계산기</h2>

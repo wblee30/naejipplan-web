@@ -15,6 +15,7 @@
 <meta name="google-adsense-account" content="ca-pub-7787037944336770">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="내집플랜">
 <!--
   AdSense: 사이트 승인 후 아래 주석을 풀어 광고 스크립트를 켠다 (계정 확인은 위 google-adsense-account 메타 태그로 함).
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7787037944336770" crossorigin="anonymous"></script>
@@ -131,10 +132,18 @@ header.site {
   border-bottom: 1px solid var(--border);
   background: var(--surface);
 }
-header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
-.logo { font-weight: 800; color: var(--brand); text-decoration: none; letter-spacing: -.02em; }
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 10px; }
+.logo { font-weight: 800; color: var(--brand); text-decoration: none; letter-spacing: -.02em; white-space: nowrap; }
 .logo small { color: var(--muted); font-weight: 500; margin-left: 6px; }
-.header-cta { font-size: 14px; font-weight: 600; text-decoration: none; }
+header.site nav { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+header.site nav a { text-decoration: none; color: var(--muted); font-weight: 600; white-space: nowrap; }
+header.site nav a:hover { color: var(--brand); }
+header.site nav a.nav-app { color: var(--brand); background: var(--brand-soft); padding: 5px 10px; border-radius: 999px; font-weight: 700; font-size: 13px; }
+header.site nav a.nav-app:hover { opacity: .88; }
+@media (max-width: 480px) {
+  header.site nav { gap: 8px; font-size: 13px; }
+  header.site nav a.nav-app { padding: 4px 8px; font-size: 12px; }
+}
 
 .hero { padding: 28px 0 12px; }
 .hero h1 { font-size: clamp(24px, 5vw, 32px); line-height: 1.3; margin: 0 0 8px; letter-spacing: -.02em; }
@@ -219,6 +228,22 @@ ul.notes { margin: 0; padding-left: 18px; font-size: 14px; color: var(--muted); 
 .cta h2 { margin: 0 0 4px; font-size: 18px; }
 .cta p { margin: 0; opacity: .9; font-size: 14px; }
 .cta a { background: var(--on-brand); color: var(--brand); text-decoration: none; font-weight: 800; padding: 12px 18px; border-radius: 12px; white-space: nowrap; }
+.cta a.cta-sub-link { background: transparent; color: var(--on-brand); padding: 6px 2px; font-weight: 600; font-size: 13px; text-decoration: underline; opacity: .9; }
+
+.result-cta { padding: 12px 14px; border-radius: 14px; background: var(--brand-soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.result-cta-text { flex: 1 1 200px; font-size: 14px; line-height: 1.5; color: var(--text); }
+.result-cta a { display: inline-block; background: var(--brand); color: var(--on-brand); text-decoration: none; font-weight: 700; font-size: 13px; padding: 8px 13px; border-radius: 10px; white-space: nowrap; }
+.result-cta a:hover { opacity: .9; }
+
+.ios-sheet-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, .5); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 1000; }
+.ios-sheet-backdrop[hidden] { display: none; }
+.ios-sheet { width: 100%; max-width: 380px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: 0 12px 32px rgba(0, 0, 0, .25); }
+.ios-sheet h3 { margin: 0 0 8px; font-size: 18px; }
+.ios-sheet p { margin: 0 0 10px; font-size: 14px; color: var(--muted); }
+.ios-sheet ol { margin: 0 0 16px; padding-left: 20px; font-size: 14px; }
+.ios-sheet-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ios-sheet-sub { font-size: 13px; color: var(--muted); text-decoration: underline; }
+.ios-sheet-close { border: 0; background: var(--brand); color: var(--on-brand); font: inherit; font-weight: 700; font-size: 14px; padding: 9px 16px; border-radius: 10px; cursor: pointer; }
 
 article.content { margin-top: 8px; }
 article.content h2 { font-size: 22px; margin: 36px 0 10px; letter-spacing: -.02em; }
@@ -234,12 +259,13 @@ details.faq p { margin: 8px 0 0; color: var(--muted); }
 .more ul { margin: 0; padding-left: 20px; }
 footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
 </style>
+<script src="/js/site-app.js" defer></script>
 </head>
 <body>
 <header class="site">
   <div class="wrap">
-    <a class="logo" href="/">내집플랜<small>대출계산기</small></a>
-    <a class="header-cta app-link" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">앱 설치</a>
+    <a class="logo" href="/">내집플랜</a>
+    <nav><a href="/#tools">계산기</a><a href="/guide/">가이드</a><a href="/about/">소개</a><a class="nav-app app-link" data-placement="header" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">앱 설치</a></nav>
   </div>
 </header>
 
@@ -378,6 +404,11 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
         <h2>한도를 정하는 세 기준</h2>
         <div class="bars" id="bars"></div>
       </section>
+
+      <div class="result-cta">
+        <div class="result-cta-text"><b>이 조건으로 매물 A/B/C 비교·정책대출 진단·PDF 저장</b>까지 앱에서 바로 이어서 해 보세요.</div>
+        <a class="app-link" data-placement="result_inline" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">앱에서 보기</a>
+      </div>
     </div>
   </div>
 
@@ -403,9 +434,9 @@ footer { margin: 40px 0 24px; padding-top: 16px; border-top: 1px solid var(--bor
   <section class="cta">
     <div>
       <h2>매물 비교·정책대출 진단까지 앱에서</h2>
-      <p>취득세 포함 총 필요 자금, 중도상환·대환 손익, 디딤돌·신생아특례 자가진단. 로그인 없이 오프라인으로.</p>
+      <p>관심 아파트 A/B/C 비교, 취득세 포함 총 필요 자금, 디딤돌·신생아특례 자가진단, PDF 리포트까지. 로그인 없이 기기에 자동 저장됩니다.</p>
     </div>
-    <a class="app-link" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">Google Play에서 받기</a>
+    <a class="app-link" data-placement="bottom_cta" href="https://play.google.com/store/apps/details?id=com.wblee.loan_calculator">Google Play에서 받기</a>
   </section>
 
   <section class="more">
@@ -491,9 +522,7 @@ const $ = (id) => document.getElementById(id);
 const form = $('form');
 const comma = new Intl.NumberFormat('ko-KR');
 
-// Play 설치 링크에 유입 경로 표시 (Play Console 획득 보고서에서 웹 유입 확인용)
-const referrer = encodeURIComponent('utm_source=web&utm_medium=calculator&utm_campaign=stress_dsr');
-document.querySelectorAll('.app-link').forEach((a) => { a.href += `&referrer=${referrer}`; });
+// Play 설치 링크 UTM·iOS 분기는 공용 /js/site-app.js가 처리한다.
 
 $('asof-foot').textContent = regulationsAsOf;
 const staleDays = (Date.now() - new Date(regulationsVerifiedAt).getTime()) / 86400000;

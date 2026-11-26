@@ -12,7 +12,7 @@ import { pathToFileURL } from 'node:url';
 // 앱 lib/logic/market_indicators.dart의 marketIndicatorSpecs + 금리 탭 기준금리와 같은 목록.
 // 앱은 'ecos:{table}/{items}', 'fred:{id}' 키로 찾는다. 지표를 추가하면 여기에도 넣는다.
 export const ecosSeries = [
-  { table: '722Y001', items: '0101000' }, // 한은 기준금리
+  { table: '722Y001', items: '0101000', daily: true }, // 한은 기준금리 (일별 최신값으로 당월 보완)
   { table: '121Y006', items: 'BECBLA0302' }, // 주담대 금리 (신규취급)
   { table: '901Y009', items: '0' }, // 소비자물가지수
   { table: '161Y008', items: 'BBGA00' }, // M2
@@ -53,6 +53,24 @@ export function parseFred(json) {
     points.push([obs.date, value]);
   }
   return points.sort((a, b) => a[0].localeCompare(b[0]));
+}
+
+/**
+ * 월별 시계열에 일별 최신값을 당월(YYYY-MM-01) 기준 EOP로 반영한다.
+ * ECOS 월별(M) 통계는 다음 달 초에야 집계되므로, 금통위 직후에도 당일 발표된 기준금리를 바로 보여준다.
+ */
+export function applyDailyLatest(monthlyPoints, dailyPoints) {
+  if (!dailyPoints?.length) return monthlyPoints;
+  const [latestDate, latestValue] = dailyPoints.at(-1);
+  const monthKey = `${latestDate.slice(0, 7)}-01`;
+  const result = monthlyPoints.map(([d, v]) => [d, v]);
+  const last = result.at(-1);
+  if (!last || monthKey > last[0]) {
+    result.push([monthKey, latestValue]);
+  } else if (monthKey === last[0]) {
+    result[result.length - 1] = [monthKey, latestValue];
+  }
+  return result;
 }
 
 /** 시리즈 하나를 한 줄로 써서 diff가 읽히게 한다 */
@@ -107,16 +125,33 @@ async function main() {
 
   const now = new Date();
   const ym = (d) => `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}`;
+  const ymd = (d) =>
+    `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}`;
   const start = new Date(Date.UTC(now.getUTCFullYear() - YEARS, now.getUTCMonth(), 1));
+  const kstNow = new Date(now.getTime() + 9 * 3600_000);
+  const dailyStart = new Date(kstNow.getTime() - 14 * 86400_000);
   const fetched = {};
   const failures = [];
 
   const jobs = [
-    ...ecosSeries.map(({ table, items }) => ({
+    ...ecosSeries.map(({ table, items, daily }) => ({
       key: `ecos:${table}/${items}`,
-      run: async () => parseEcos(await getJson(
-        `https://ecos.bok.or.kr/api/StatisticSearch/${encodeURIComponent(ecosKey)}/json/kr/1/500/` +
-        `${table}/M/${ym(start)}/${ym(now)}/${items}`, `ECOS ${table}`)),
+      run: async () => {
+        let points = parseEcos(await getJson(
+          `https://ecos.bok.or.kr/api/StatisticSearch/${encodeURIComponent(ecosKey)}/json/kr/1/500/` +
+          `${table}/M/${ym(start)}/${ym(now)}/${items}`, `ECOS ${table}`));
+        if (daily) {
+          try {
+            const dailyPoints = parseEcos(await getJson(
+              `https://ecos.bok.or.kr/api/StatisticSearch/${encodeURIComponent(ecosKey)}/json/kr/1/30/` +
+              `${table}/D/${ymd(dailyStart)}/${ymd(kstNow)}/${items}`, `ECOS ${table} (D)`));
+            points = applyDailyLatest(points, dailyPoints);
+          } catch (e) {
+            console.warn(`ecos:${table}/${items} 일별 보완 생략 — ${e.message}`);
+          }
+        }
+        return points;
+      },
     })),
     ...fredSeries.map((id) => ({
       key: `fred:${id}`,

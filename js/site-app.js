@@ -5,8 +5,8 @@
 
 (function () {
   const PLAY_BASE = 'https://play.google.com/store/apps/details?id=com.wblee.loan_calculator';
-  // GA4 연결 시 'G-XXXXXXXXXX' 입력 (비어 있으면 완전 비활성, 개인정보처리방침 갱신 불필요)
-  const GA_MEASUREMENT_ID = '';
+  // GA4 측정 ID (naejipplan.com 웹 스트림)
+  const GA_MEASUREMENT_ID = 'G-KF8H92HJPP';
 
   function detectOs(ua, platform, maxTouchPoints) {
     const s = ua || '';
